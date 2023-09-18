@@ -7,13 +7,13 @@ import java.util.List;
 
 @Data
 @Builder
-public class Customer {
+public class Account {
     private String username;
     private String[] contactInfo;
     private Integer[] paymentInfo;
-    private List<Payments> paymentHistory;
+    private List<PaymentsHistory> paymentHistory;
 //    Tickets you bought but haven't used yet
-    private List<ActiveBookings> activeBookings;
     private String accountType;
+    private List<ActiveBookings> activeBookings;
 
 }

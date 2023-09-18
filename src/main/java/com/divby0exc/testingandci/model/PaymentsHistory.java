@@ -4,13 +4,10 @@ import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
-public class ActiveBookings {
+public class PaymentsHistory {
     private String username;
     @Id
     private long routeId;
-
 }
