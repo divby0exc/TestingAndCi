@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentsHistory {
-    private String username;
     @Id
+    private String username;
     private long routeId;
 }

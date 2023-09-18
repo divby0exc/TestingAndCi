@@ -15,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActiveBookings {
-    private String username;
     @Id
+    private String username;
     private long routeId;
 
 }
