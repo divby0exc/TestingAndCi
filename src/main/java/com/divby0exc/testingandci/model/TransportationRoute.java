@@ -1,14 +1,16 @@
 package com.divby0exc.testingandci.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Generated;
+import lombok.*;
 
+@Entity
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TransportationRoute {
     private String departurePoint;
     private String arrivalPoint;
