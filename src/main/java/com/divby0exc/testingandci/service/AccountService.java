@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService implements IAccountService {
     @Autowired
-    IAccountRepository repository;
+    private IAccountRepository repository;
 
     @Override
     public Account saveAccount(Account newAccount) {
-        return null;
+        return repository.save(newAccount);
     }
 
     @Override
