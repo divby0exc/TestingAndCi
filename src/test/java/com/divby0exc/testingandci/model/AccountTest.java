@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
 public class AccountTest {
     @Autowired
     private TestRestTemplate restTemplate;
+    @Autowired
     private AccountService accountService;
     @Test
     public void testGettersAndSetters() {
