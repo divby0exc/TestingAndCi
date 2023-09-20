@@ -2,6 +2,8 @@ package com.divby0exc.testingandci.service;
 
 import com.divby0exc.testingandci.model.Account;
 
+import java.util.Optional;
+
 public interface IAccountService {
     /*Create new account*/
     Account saveAccount(Account newAccount);
@@ -13,5 +15,5 @@ public interface IAccountService {
     void deleteAccount(Long accountId);
 
     /*Fetch account*/
-    Account fetchedAccount(Long accountId);
+    Optional<Account> fetchedAccount(Long accountId);
 }

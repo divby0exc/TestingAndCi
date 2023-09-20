@@ -5,6 +5,8 @@ import com.divby0exc.testingandci.repository.IAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AccountService implements IAccountService {
     @Autowired
@@ -26,7 +28,7 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Account fetchedAccount(Long accountId) {
-        return null;
+    public Optional<Account> fetchedAccount(Long accountId) {
+        return repository.findById(accountId);
     }
 }
