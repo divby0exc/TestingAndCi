@@ -43,7 +43,7 @@ public class AccountTest {
     @Test
     public void testCreateAndRetrieveAccount() {
         // Define the base URL for account creation endpoint
-        String baseUrl = "http://localhost:" + 8080 + "/create_account";
+        String baseUrl = "http://localhost:" + 8080 + "/account/create_account";
 
         // Create an account object then
         // Make a HTTP req to save the account thro the endpoint
