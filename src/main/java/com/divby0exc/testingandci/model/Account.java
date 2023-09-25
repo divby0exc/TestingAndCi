@@ -21,12 +21,7 @@ public class Account {
     private String username;
     @Valid
     private String contactInfo;
-    private int paymentInfo;
+    private String paymentInfo;
 //    Tickets you bought but haven't used yet
     private String accountType;
-
-    public Integer getDigitCount(int number) {
-        String convertNumberToString = String.valueOf(number);
-        return convertNumberToString.length();
-    }
 }
