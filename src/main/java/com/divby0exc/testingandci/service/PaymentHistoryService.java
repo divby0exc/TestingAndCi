@@ -12,7 +12,12 @@ implements IPaymentHistoryService{
     IPaymentHistoryRepository repository;
 
     @Override
-    public PaymentsHistory paymentHistory(Long accountId) {
+    public PaymentsHistory fetchPayment(Long accountId) {
         return null;
+    }
+
+    @Override
+    public PaymentsHistory createPayment(PaymentsHistory paymentsHistory) {
+        return repository.save(paymentsHistory);
     }
 }

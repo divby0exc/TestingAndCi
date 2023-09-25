@@ -4,10 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.EOFException;
 
 @Entity
 @Data
@@ -16,8 +19,14 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+    @Valid
     private String contactInfo;
     private int paymentInfo;
 //    Tickets you bought but haven't used yet
     private String accountType;
+
+    public Integer getDigitCount(int number) {
+        String convertNumberToString = String.valueOf(number);
+        return convertNumberToString.length();
+    }
 }

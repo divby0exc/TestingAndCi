@@ -20,6 +20,22 @@ public class AccountTest {
     private TestRestTemplate restTemplate;
     @Autowired
     private AccountService accountService;
+
+    @Test
+    public void testingEdgeCaseOnContactInfoEmail() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo(\07622633226);
+        account.setUsername("Heeelliio");
+
+        account.setContactInfo("hsouid@!@.com");
+
+    }
+    @Test
+    public void testingEdgeCaseOnPaymentInfo() {
+
+    }
+
     @Test
     public void testGettersAndSetters() {
         // Create a mock Account object

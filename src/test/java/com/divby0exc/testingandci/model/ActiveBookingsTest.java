@@ -2,10 +2,12 @@ package com.divby0exc.testingandci.model;
 
 import com.divby0exc.testingandci.service.ActiveBookingService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -17,6 +19,10 @@ public class ActiveBookingsTest {
     private ActiveBookingService activeBookingService;
     @Autowired
     private TestRestTemplate restTemplate;
+
+    private MockMvc mockMvc;
+    @Autowired
+    TestRestTemplate testRestTemplate;
 
     @Test
     public void testGettersAndSetters() {
@@ -60,7 +66,8 @@ public class ActiveBookingsTest {
         activeBookings.setUsername("Daniel");
         activeBookings.setRouteId(123);
 
-        ActiveBookings createdActiveBookings = restTemplate.postForObject(baseUrl, activeBookings, ActiveBookings.class);
+        ActiveBookings createdActiveBookings = testRestTemplate.postForObject(baseUrl, activeBookings, ActiveBookings.class);
+        testRestTemplate.postForEntity(baseUrl, activeBookings, ActiveBookings.class).getStatusCode().is2xxSuccessful();
 
         // Verify the response and active booking creation
         assertNotNull(createdActiveBookings.getUsername());
