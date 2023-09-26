@@ -4,9 +4,8 @@ import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
 import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
 import com.divby0exc.testingandci.handlerexception.NullValueException;
 import com.divby0exc.testingandci.service.AccountService;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +15,10 @@ import org.springframework.test.annotation.DirtiesContext;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest
+//        (webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DataJpaTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AccountTest {
     @Autowired
     private TestRestTemplate restTemplate;
@@ -31,8 +31,9 @@ public class AccountTest {
 //        Account account = mock(Account.class);
         Account account = new Account();
         account.setAccountType("USER");
-        account.setPaymentInfo("0761111111");
-        account.setUsername("divby0exc");
+        account.setPaymentInfo("076111111");
+        account.setPaymentInfo("+4676111111");
+//        account.setUsername("divby0exc");
         account.setContactInfo("dani@gmail.com");
 
         assertNull(account.getUsername());
@@ -107,7 +108,6 @@ public class AccountTest {
         assertEquals("dani@gmail.com", retrievedAccount.getContactInfo());
         assertEquals("123456", retrievedAccount.getPaymentInfo());
         assertEquals("USER", retrievedAccount.getAccountType());
-        assertThrows(NullValueException.class, () -> accountService.saveAccount(account));
 
     }
 

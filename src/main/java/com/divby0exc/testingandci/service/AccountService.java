@@ -1,8 +1,6 @@
 package com.divby0exc.testingandci.service;
 
-import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
-import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
-import com.divby0exc.testingandci.handlerexception.NullValueException;
+import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.model.Account;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +17,21 @@ public class AccountService implements IAccountService {
     /*Create custom exception for each unvalid fields*/
 
     @Override
-    public Account saveAccount(Account newAccount) throws InvalidUsernameInputException, NullValueException, InvalidPaymentInfoException {
-        if (newAccount.getUsername().equals(null)) {
-            throw new NullValueException("Username cannot be null");
-        } else if (newAccount.getContactInfo().equals(null)) {
-            throw new NullValueException("Contact info cannot be null");
-        } else if (newAccount.getPaymentInfo().equals(null)) {
-            throw new NullValueException("Payment info cannot be null");
-        } else if (newAccount.getAccountType().equals(null)) {
-            throw new NullValueException("Account type cannot be null");
-        } else if(newAccount.getPaymentInfo().length()!=10 && newAccount.getPaymentInfo().startsWith("07")) {
+    public Account saveAccount(Account newAccount) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidContactInfo, InvalidAuthTypeException {
+        if (newAccount.getUsername() == null) {
+            throw new InvalidUsernameInputException("Username cannot be null");
+        } else if (newAccount.getContactInfo() == null) {
+            throw new InvalidContactInfo("Contact info cannot be null");
+        } else if (newAccount.getPaymentInfo() == null) {
+            throw new InvalidPaymentInfoException("Payment info cannot be null");
+        } else if (newAccount.getAccountType() == null) {
+            throw new InvalidAuthTypeException("Account type cannot be null");
+        } else if(newAccount.getPaymentInfo().startsWith("07") && newAccount.getPaymentInfo().length()!=10) {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with 07 needs to be 10 digits");
-        } else if(newAccount.getPaymentInfo().startsWith("+46") && newAccount.getPaymentInfo().length()!=11) {
+        } else if(newAccount.getPaymentInfo().startsWith("+46") && newAccount.getPaymentInfo().length()!=12) {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with +46 should be 11 digits");
+        } else if(!newAccount.getContactInfo().contains("@")) {
+            throw new InvalidContactInfo("A valid email address contains an @ symbol");
         }
     return repository.save(newAccount);
     }
@@ -40,7 +40,10 @@ public class AccountService implements IAccountService {
         return repository.save(oldAccount);
         }
 
-@Override public void deleteAccount(Long accountId){
+@Override public void deleteAccount(Long accountId) throws InvalidAccountIdException {
+        if(fetchedAccount(accountId).isEmpty()) {
+            throw new InvalidAccountIdException("No account matched with the given account id");
+        }
         repository.deleteById(accountId);
         }
 
