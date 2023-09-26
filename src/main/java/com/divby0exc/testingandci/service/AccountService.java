@@ -20,7 +20,7 @@ public class AccountService implements IAccountService {
     public Account saveAccount(Account newAccount) {
         if(newAccount.getUsername()!= null) {
             if(newAccount.getContactInfo()!=null) {
-                if(newAccount.getDigitCount(newAccount.getPaymentInfo())==10) {
+                if(newAccount.getPaymentInfo().length()==10) {
                     if(newAccount.getAccountType()!=null) {
                         return repository.save(newAccount);
                     } else {
@@ -46,7 +46,6 @@ public class AccountService implements IAccountService {
     @Override
     public void deleteAccount(Long accountId) {
         repository.deleteById(accountId);
-
     }
 
     @Override

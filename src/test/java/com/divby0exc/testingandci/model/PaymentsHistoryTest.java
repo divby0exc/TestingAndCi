@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 public class PaymentsHistoryTest {
@@ -33,9 +34,10 @@ public class PaymentsHistoryTest {
         paymentsHistoryService.createPayment(paymentsHistory);
 
         // Retrieve the PaymentsHistory entity from the database
-        PaymentsHistory retrievedPaymentsHistory = paymentsHistoryService.fetchPayment("USER").orElse(null);
+        PaymentsHistory retrievedPaymentsHistory = paymentsHistoryService.fetchPayment(paymentsHistory.getId()).orElse(null);
 
         // Perform assertions to verify the save and retrieve operations
+        assertNotNull(retrievedPaymentsHistory);
         assertEquals("USER", retrievedPaymentsHistory.getUsername());
         assertEquals(123, retrievedPaymentsHistory.getRouteId());
     }

@@ -5,6 +5,8 @@ import com.divby0exc.testingandci.repository.IPaymentHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PaymentHistoryService
 implements IPaymentHistoryService{
@@ -12,8 +14,8 @@ implements IPaymentHistoryService{
     IPaymentHistoryRepository repository;
 
     @Override
-    public PaymentsHistory fetchPayment(Long accountId) {
-        return null;
+    public Optional<PaymentsHistory> fetchPayment(Long accountId) {
+        return repository.findById(accountId);
     }
 
     @Override
