@@ -19,7 +19,6 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
-    @Valid
     private String contactInfo;
     private String paymentInfo;
 //    Tickets you bought but haven't used yet

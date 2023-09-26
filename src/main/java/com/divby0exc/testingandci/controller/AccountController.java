@@ -1,5 +1,8 @@
 package com.divby0exc.testingandci.controller;
 
+import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
+import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import com.divby0exc.testingandci.handlerexception.NullValueException;
 import com.divby0exc.testingandci.model.Account;
 import com.divby0exc.testingandci.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,7 @@ public class AccountController {
     private AccountService accountService;
     // Save operation
     @PostMapping("create_account")
-    public Account saveAccount(@RequestBody Account account) {
+    public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, NullValueException {
         return accountService.saveAccount(account);
     }
 }

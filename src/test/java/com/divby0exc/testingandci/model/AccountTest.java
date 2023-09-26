@@ -1,5 +1,8 @@
 package com.divby0exc.testingandci.model;
 
+import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
+import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import com.divby0exc.testingandci.handlerexception.NullValueException;
 import com.divby0exc.testingandci.service.AccountService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -84,7 +87,7 @@ public class AccountTest {
     }
 
     @Test
-    public void testSaveAccount() {
+    public void testSaveAccount() throws InvalidUsernameInputException, InvalidPaymentInfoException, NullValueException {
 //         Create an instance of Account
         Account account = new Account();
         account.setUsername("Dani");
@@ -104,7 +107,7 @@ public class AccountTest {
         assertEquals("dani@gmail.com", retrievedAccount.getContactInfo());
         assertEquals("123456", retrievedAccount.getPaymentInfo());
         assertEquals("USER", retrievedAccount.getAccountType());
-        assertDoesNotThrow(Throwable() -> {});
+        assertThrows(NullValueException.class, () -> accountService.saveAccount(account));
 
     }
 
