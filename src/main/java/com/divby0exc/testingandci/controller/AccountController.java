@@ -9,18 +9,25 @@ import com.divby0exc.testingandci.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/account/")
 public class AccountController {
     @Autowired
     private AccountService accountService;
-    // Save operation
-
+//    POST
+//    Delete
+//    PUT
+//    GET
 
     @PostMapping("create_account")
     public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
         return accountService.saveAccount(account);
     }
 
-//    @GetMapping("")
+    @GetMapping("get_account/{id}")
+    public Optional<Account> fetchAccount(@PathVariable Long id) {
+        return accountService.fetchedAccount(id);
+    }
 }

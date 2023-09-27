@@ -90,7 +90,7 @@ public class AccountTest {
     public void testSaveAccount() throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
 //         Create an instance of Account
         Account account = new Account();
-        account.setUsername("");
+        account.setUsername("Dani");
         account.setContactInfo("dani@gmail.com");
         account.setPaymentInfo("123456");
         account.setAccountType("USER");

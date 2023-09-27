@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 public class ActiveBookings {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String username;
     private long routeId;

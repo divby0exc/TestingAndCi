@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PaymentsHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
     private long routeId;
 }

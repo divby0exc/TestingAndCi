@@ -16,10 +16,8 @@ public class PaymentsHistoryTest {
     @Test
     public void testGettersAndSetters() {
         PaymentsHistory paymentsHistory = new PaymentsHistory();
-        paymentsHistory.setUsername("Daniel");
         paymentsHistory.setRouteId(123);
 
-        assertEquals("Daniel", paymentsHistory.getUsername());
         assertEquals(123, paymentsHistory.getRouteId());
     }
 
@@ -27,7 +25,6 @@ public class PaymentsHistoryTest {
     public void testSaveAndRetrievePaymentsHistory() {
         // Create an instance of PaymentsHistory
         PaymentsHistory paymentsHistory = new PaymentsHistory();
-        paymentsHistory.setUsername("USER");
         paymentsHistory.setRouteId(123);
 
         // Save the PaymentsHistory entity to the database
@@ -38,7 +35,6 @@ public class PaymentsHistoryTest {
 
         // Perform assertions to verify the save and retrieve operations
         assertNotNull(retrievedPaymentsHistory);
-        assertEquals("USER", retrievedPaymentsHistory.getUsername());
         assertEquals(123, retrievedPaymentsHistory.getRouteId());
     }
 
