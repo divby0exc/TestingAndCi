@@ -15,8 +15,12 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
     // Save operation
+
+
     @PostMapping("create_account")
     public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
         return accountService.saveAccount(account);
     }
+
+//    @GetMapping("")
 }

@@ -20,6 +20,8 @@ public class AccountService implements IAccountService {
     public Account saveAccount(Account newAccount) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidContactInfo, InvalidAuthTypeException {
         if (newAccount.getUsername() == null) {
             throw new InvalidUsernameInputException("Username cannot be null");
+        } else if(newAccount.getUsername().isEmpty()) {
+            throw new InvalidUsernameInputException("Username cannot be empty");
         } else if (newAccount.getContactInfo() == null) {
             throw new InvalidContactInfo("Contact info cannot be null");
         } else if (newAccount.getPaymentInfo() == null) {
