@@ -1,16 +1,14 @@
 package com.divby0exc.testingandci.model;
 
+import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
+import com.divby0exc.testingandci.handlerexception.InvalidContactInfo;
 import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
 import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
-import com.divby0exc.testingandci.handlerexception.NullValueException;
 import com.divby0exc.testingandci.service.AccountService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -88,7 +86,7 @@ public class AccountTest {
     }
 
     @Test
-    public void testSaveAccount() throws InvalidUsernameInputException, InvalidPaymentInfoException, NullValueException {
+    public void testSaveAccount() throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
 //         Create an instance of Account
         Account account = new Account();
         account.setUsername("Dani");
