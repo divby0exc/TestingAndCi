@@ -29,18 +29,18 @@ public class ActiveBookingsTest {
     public void testGettersAndSetters() {
         // Create an instance of ActiveBookings
         ActiveBookings activeBookings = new ActiveBookings();
-        activeBookings.setRouteId(123);
+        activeBookings.setRouteId(123L);
 
         // Perform assertions to verify getter methods
         assertNotNull(activeBookings);
-        assertEquals(123, activeBookings.getRouteId());
+        assertEquals(123L, activeBookings.getRouteId());
     }
 
     @Test
     public void testSaveAndRetrieveActiveBooking() throws InvalidBookingIdException {
         // Create an instance of ActiveBookings
         ActiveBookings activeBookings = new ActiveBookings();
-        activeBookings.setRouteId(123);
+        activeBookings.setRouteId(123L);
 
         // Save the ActiveBookings entity to the database
         activeBookingService.createNewBooking(activeBookings);
@@ -60,7 +60,7 @@ public class ActiveBookingsTest {
 
         // Create an HTTP request to create an active booking
         ActiveBookings activeBookings = new ActiveBookings();
-        activeBookings.setRouteId(123);
+        activeBookings.setRouteId(123L);
 
         ActiveBookings createdActiveBookings = testRestTemplate.postForObject(baseUrl, activeBookings, ActiveBookings.class);
         testRestTemplate.postForEntity(baseUrl, activeBookings, ActiveBookings.class).getStatusCode().is2xxSuccessful();

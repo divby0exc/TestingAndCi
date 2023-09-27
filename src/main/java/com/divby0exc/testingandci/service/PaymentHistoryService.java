@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.service;
 
+import com.divby0exc.testingandci.handlerexception.InvalidPaymentIdException;
 import com.divby0exc.testingandci.model.PaymentsHistory;
 import com.divby0exc.testingandci.repository.IPaymentHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ implements IPaymentHistoryService{
     IPaymentHistoryRepository repository;
 
     @Override
-    public Optional<PaymentsHistory> fetchPayment(Long accountId) {
+    public Optional<PaymentsHistory> fetchPayment(Long accountId) throws InvalidPaymentIdException {
+        if(!repository.existsById(accountId))
+            throw new InvalidPaymentIdException("No payment id found");
         return repository.findById(accountId);
     }
 

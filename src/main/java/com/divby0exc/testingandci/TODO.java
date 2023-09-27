@@ -8,15 +8,13 @@
     done Delete
     done PUT
     done GET
-    6. Controller for ActiveBooking
-    POST
-    Delete
-    GET
-    7. Controller for PaymentsHistory
-    POST
-    Delete
-    PUT
-    GET
+    done 6. Controller for ActiveBooking
+    done POST
+    done Delete
+    done GET
+    done 7. Controller for PaymentsHistory
+    done POST
+    done GET
     8. Controller for TransportationRoute
     POST
     Delete
