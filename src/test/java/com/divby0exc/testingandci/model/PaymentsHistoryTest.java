@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.model;
 
+import com.divby0exc.testingandci.handlerexception.InvalidPaymentIdException;
 import com.divby0exc.testingandci.service.PaymentHistoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PaymentsHistoryTest {
     }
 
     @Test
-    public void testSaveAndRetrievePaymentsHistory() {
+    public void testSaveAndRetrievePaymentsHistory() throws InvalidPaymentIdException {
         // Create an instance of PaymentsHistory
         PaymentsHistory paymentsHistory = new PaymentsHistory();
         paymentsHistory.setRouteId(123);
@@ -31,7 +32,7 @@ public class PaymentsHistoryTest {
         paymentsHistoryService.createPayment(paymentsHistory);
 
         // Retrieve the PaymentsHistory entity from the database
-        PaymentsHistory retrievedPaymentsHistory = paymentsHistoryService.fetchPayment(paymentsHistory.getId()).orElse(null);
+        PaymentsHistory retrievedPaymentsHistory = paymentsHistoryService.fetchPayment(paymentsHistory.getAccountId()).orElse(null);
 
         // Perform assertions to verify the save and retrieve operations
         assertNotNull(retrievedPaymentsHistory);

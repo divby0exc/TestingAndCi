@@ -15,11 +15,10 @@
     done 7. Controller for PaymentsHistory
     done POST
     done GET
-    8. Controller for TransportationRoute
-    POST
-    Delete
-    PUT
-    GET
+    done 8. Controller for TransportationRoute
+    done POST
+    done PUT
+    done GET
     9. login controller
     genera en jwt token via post jag kan mocka en jwt så fejka ett giltigt konto vid auth
     11. i service ska jag göra en auth genom att mocka ett konto.

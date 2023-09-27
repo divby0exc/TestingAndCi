@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.controller;
 
+import com.divby0exc.testingandci.handlerexception.InvalidPaymentIdException;
 import com.divby0exc.testingandci.model.PaymentsHistory;
 import com.divby0exc.testingandci.service.PaymentHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class PaymentHistoryController {
     }
     //    GET
     @GetMapping("get_payment/{accountId}")
-    public Optional<PaymentsHistory> fetchActiveBooking(@PathVariable Long accountId) {
+    public Optional<PaymentsHistory> fetchActiveBooking(@PathVariable Long accountId) throws InvalidPaymentIdException {
         return paymentHistoryService.fetchPayment(accountId);
     }
 }
