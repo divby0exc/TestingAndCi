@@ -1,12 +1,10 @@
 package com.divby0exc.testingandci.controller;
 
-import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
-import com.divby0exc.testingandci.handlerexception.InvalidContactInfo;
-import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
-import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.model.Account;
 import com.divby0exc.testingandci.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,18 +14,27 @@ import java.util.Optional;
 public class AccountController {
     @Autowired
     private AccountService accountService;
-//    POST
-//    Delete
-//    PUT
-//    GET
 
+
+    //    POST
     @PostMapping("create_account")
     public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
         return accountService.saveAccount(account);
     }
-
+    //    GET
     @GetMapping("get_account/{id}")
-    public Optional<Account> fetchAccount(@PathVariable Long id) {
+    public Optional<Account> fetchAccount(@PathVariable Long id) throws InvalidAccountIdException {
         return accountService.fetchedAccount(id);
+    }
+    //    PUT
+    @PutMapping("update_account/{id}")
+    public Account updateAccount(@PathVariable Long id, @RequestBody Account account) throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidContactInfo, InvalidPaymentInfoException {
+        account.setId(id);
+        return accountService.saveAccount(account);
+    }
+    //    Delete
+    @DeleteMapping("delete_account/{id}")
+    public void deleteAccount(@PathVariable Long id) throws InvalidAccountIdException {
+        accountService.deleteAccount(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.service;
 
+import com.divby0exc.testingandci.handlerexception.InvalidBookingIdException;
 import com.divby0exc.testingandci.model.ActiveBookings;
 import com.divby0exc.testingandci.repository.IActiveBookingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ implements IActiveBookingService{
 
     @Override
     public List<ActiveBookings> fetchActiveBookingList(Long accountId) {
-        return null;
+        return repository.findAll().stream().filter(e -> e.getId().equals(accountId)).toList();
     }
 
     @Override
@@ -25,12 +26,16 @@ implements IActiveBookingService{
     }
 
     @Override
-    public void deleteBooking(Long bookingId) {
-
+    public void deleteBooking(Long bookingId) throws InvalidBookingIdException {
+        if(!repository.existsById(bookingId))
+            throw new InvalidBookingIdException("Booking id not found");
+        repository.deleteById(bookingId);
     }
 
     @Override
-    public Optional<ActiveBookings> fetchOneBooking(Long accountId) {
+    public Optional<ActiveBookings> fetchOneBooking(Long accountId) throws InvalidBookingIdException {
+        if(!repository.existsById(accountId))
+            throw new InvalidBookingIdException("Booking id not found");
         return repository.findById(accountId);
     }
 }

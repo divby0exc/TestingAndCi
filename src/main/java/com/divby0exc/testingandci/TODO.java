@@ -3,15 +3,14 @@
     2. End to end testing for ActiveBookingService
     3. End to end testing for PaymentHistoryService
     4. End to end testing for TransportationRouteService
-    5. Controller for Account
-    POST
-    Delete
-    PUT
-    GET
+    done 5. Controller for Account
+    done POST
+    done Delete
+    done PUT
+    done GET
     6. Controller for ActiveBooking
     POST
     Delete
-    PUT
     GET
     7. Controller for PaymentsHistory
     POST
@@ -35,5 +34,6 @@
     16. Add username id to activebooking when created
     17. Add username id to paymenthistory when created
     18. Create a function in transportservice to fetch
+    19. When you create a booking you need to create a payment and fetch routeid from the trip and add it to both activebooking and paymenthistory
 
     */

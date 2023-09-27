@@ -1,9 +1,6 @@
 package com.divby0exc.testingandci.model;
 
-import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
-import com.divby0exc.testingandci.handlerexception.InvalidContactInfo;
-import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
-import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.service.AccountService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +84,7 @@ public class AccountTest {
     }
 
     @Test
-    public void testSaveAccount() throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
+    public void testSaveAccount() throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo, InvalidAccountIdException {
 //         Create an instance of Account
         Account account = new Account();
         account.setUsername("Dani");

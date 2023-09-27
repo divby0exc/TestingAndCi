@@ -17,7 +17,6 @@ public class ActiveBookings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private String username;
     private long routeId;
 
 }
