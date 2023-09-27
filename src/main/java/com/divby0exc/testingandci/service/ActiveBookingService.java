@@ -17,7 +17,7 @@ implements IActiveBookingService{
 
     @Override
     public List<ActiveBookings> fetchActiveBookingList(Long accountId) {
-        return repository.findAll().stream().filter(e -> e.getId().equals(accountId)).toList();
+        return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).toList();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.model;
 
+import com.divby0exc.testingandci.handlerexception.InvalidBookingIdException;
 import com.divby0exc.testingandci.service.ActiveBookingService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -28,31 +29,27 @@ public class ActiveBookingsTest {
     public void testGettersAndSetters() {
         // Create an instance of ActiveBookings
         ActiveBookings activeBookings = new ActiveBookings();
-        activeBookings.setUsername("USER");
         activeBookings.setRouteId(123);
 
         // Perform assertions to verify getter methods
         assertNotNull(activeBookings);
-        assertEquals("USER", activeBookings.getUsername());
         assertEquals(123, activeBookings.getRouteId());
     }
 
     @Test
-    public void testSaveAndRetrieveActiveBooking() {
+    public void testSaveAndRetrieveActiveBooking() throws InvalidBookingIdException {
         // Create an instance of ActiveBookings
         ActiveBookings activeBookings = new ActiveBookings();
-        activeBookings.setUsername("Daniel");
         activeBookings.setRouteId(123);
 
         // Save the ActiveBookings entity to the database
         activeBookingService.createNewBooking(activeBookings);
 
         // Retrieve the ActiveBookings entity from the database
-        ActiveBookings retrievedActiveBookings = activeBookingService.fetchOneBooking(activeBookings.getId()).orElse(null);
+        ActiveBookings retrievedActiveBookings = activeBookingService.fetchOneBooking(activeBookings.getAccountId()).orElse(null);
 
         // Perform assertions to verify the save and retrieve operations
         assertNotNull(retrievedActiveBookings);
-        assertEquals("Daniel", retrievedActiveBookings.getUsername());
         assertEquals(123, retrievedActiveBookings.getRouteId());
     }
 
@@ -63,14 +60,12 @@ public class ActiveBookingsTest {
 
         // Create an HTTP request to create an active booking
         ActiveBookings activeBookings = new ActiveBookings();
-        activeBookings.setUsername("Daniel");
         activeBookings.setRouteId(123);
 
         ActiveBookings createdActiveBookings = testRestTemplate.postForObject(baseUrl, activeBookings, ActiveBookings.class);
         testRestTemplate.postForEntity(baseUrl, activeBookings, ActiveBookings.class).getStatusCode().is2xxSuccessful();
 
         // Verify the response and active booking creation
-        assertNotNull(createdActiveBookings.getUsername());
         assertEquals(123, createdActiveBookings.getRouteId());
     }
 }

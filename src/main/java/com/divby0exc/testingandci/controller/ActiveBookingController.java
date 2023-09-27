@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.controller;
 
+import com.divby0exc.testingandci.handlerexception.InvalidBookingIdException;
 import com.divby0exc.testingandci.model.ActiveBookings;
 import com.divby0exc.testingandci.service.ActiveBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class ActiveBookingController {
 
     //    POST
     @PostMapping("create_booking")
-    public ActiveBookings saveAccount(@RequestBody ActiveBookings activeBookings) {
+    public ActiveBookings saveBooking(@RequestBody ActiveBookings activeBookings) {
         return activeBookingService.createNewBooking(activeBookings);
     }
     //    GET
     @GetMapping("get_booking/{accountId}")
-    public Optional<ActiveBookings> fetchActiveBooking(@PathVariable Long accountId) {
+    public Optional<ActiveBookings> fetchActiveBooking(@PathVariable Long accountId) throws InvalidBookingIdException {
         return activeBookingService.fetchOneBooking(accountId);
     }
     //    GET
@@ -30,15 +31,9 @@ public class ActiveBookingController {
     public List<ActiveBookings> fetchActiveBookingList(@PathVariable Long accountId) {
         return activeBookingService.fetchActiveBookingList(accountId);
     }
-    //    PUT
-    @PutMapping("update_booking/{id}")
-    public ActiveBookings updateBooking(@PathVariable Long id, @RequestBody ActiveBookings activeBookings) {
-        activeBookings.setId(id);
-        return activeBookingService.createNewBooking(activeBookings);
-    }
     //    Delete
-    @DeleteMapping("delete_booking/{id}")
-    public void deleteAccount(@PathVariable Long id) {
-        activeBookingService.deleteBooking(id);
+    @DeleteMapping("delete_booking/{accountId}")
+    public void deleteBooking(@PathVariable Long accountId) throws InvalidBookingIdException {
+        activeBookingService.deleteBooking(accountId);
     }
 }
