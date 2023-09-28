@@ -19,8 +19,8 @@
     done POST
     done PUT
     done GET
-    9. login controller
-    genera en jwt token via post jag kan mocka en jwt så fejka ett giltigt konto vid auth
+    done 9. login controller
+    10. genera en jwt token via post jag kan mocka en jwt så fejka ett giltigt konto vid auth
     11. i service ska jag göra en auth genom att mocka ett konto.
     input oväsentligt så länge de är en giltig jwt sträng
     om auth ger tebaka ett fejkat konto så uppdaterar du
