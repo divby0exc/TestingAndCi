@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransportationRouteService implements ITransportationRouteService {
@@ -29,4 +30,14 @@ public class TransportationRouteService implements ITransportationRouteService {
     public TransportationRoute createNewRoute(TransportationRoute newRoute) {
         return repository.save(newRoute);
     }
+
+    @Override
+    public Optional<TransportationRoute> getOneRoute(Long routeId) throws InvalidRouteIdException {
+        if(!repository.existsById(routeId))
+            throw new InvalidRouteIdException("The given route ID was not found");
+
+        return repository.findById(routeId);
+    }
 }
+
+

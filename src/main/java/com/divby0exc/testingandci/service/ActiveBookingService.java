@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.service;
 
+import com.divby0exc.testingandci.handlerexception.InvalidAccountIdException;
 import com.divby0exc.testingandci.handlerexception.InvalidBookingIdException;
 import com.divby0exc.testingandci.model.ActiveBookings;
 import com.divby0exc.testingandci.repository.IActiveBookingsRepository;
@@ -16,7 +17,9 @@ implements IActiveBookingService{
     IActiveBookingsRepository repository;
 
     @Override
-    public List<ActiveBookings> fetchActiveBookingList(Long accountId) {
+    public List<ActiveBookings> fetchActiveBookingList(Long accountId) throws InvalidBookingIdException {
+        if(!repository.existsById(accountId))
+            throw new InvalidBookingIdException("Booking id not found");
         return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).toList();
     }
 

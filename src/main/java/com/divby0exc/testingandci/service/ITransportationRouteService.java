@@ -4,6 +4,7 @@ import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
 import com.divby0exc.testingandci.model.TransportationRoute;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ITransportationRouteService {
     /*Update eventual discount*/
@@ -17,5 +18,5 @@ public interface ITransportationRouteService {
     TransportationRoute createNewRoute(TransportationRoute newRoute);
 
     /*Get one route by id*/
-    TransportationRoute getOneRoute(Long routeId) throws InvalidRouteIdException;
+    Optional<TransportationRoute> getOneRoute(Long routeId) throws InvalidRouteIdException;
 }

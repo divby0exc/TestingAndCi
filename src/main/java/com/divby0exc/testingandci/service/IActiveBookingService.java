@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface IActiveBookingService {
     /*Fetch object list*/
-    List<ActiveBookings> fetchActiveBookingList(Long accountId);
+    List<ActiveBookings> fetchActiveBookingList(Long accountId) throws InvalidBookingIdException;
 
     /*Create new booking*/
     ActiveBookings createNewBooking(ActiveBookings activeBookings);

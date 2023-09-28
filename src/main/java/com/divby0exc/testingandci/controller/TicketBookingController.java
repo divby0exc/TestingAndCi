@@ -1,5 +1,6 @@
 package com.divby0exc.testingandci.controller;
 
+import com.divby0exc.testingandci.handlerexception.InvalidAccountIdException;
 import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
 import com.divby0exc.testingandci.model.ActiveBookings;
 import com.divby0exc.testingandci.model.PaymentsHistory;
@@ -11,6 +12,8 @@ import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/book_a_ticket/")
 public class TicketBookingController {
@@ -20,11 +23,21 @@ public class TicketBookingController {
     ActiveBookingService activeBookingService;
     @Autowired
     PaymentHistoryService paymentHistoryService;
+    @Autowired
+    AccountService accountService;
 
-    @PostMapping("{routeId}")
-    public TransportationRoute buyATicket(@PathVariable Long routeId,
-                                          @RequestBody ActiveBookings activeBookings,
-                                          @RequestBody PaymentsHistory paymentsHistory) throws InvalidRouteIdException {
+    @PostMapping("{accountId}/{routeId}")
+    public Optional<TransportationRoute> buyATicket(@PathVariable Long routeId, @PathVariable Long accountId) throws InvalidRouteIdException, InvalidAccountIdException {
+        ActiveBookings activeBookings = new ActiveBookings();
+        PaymentsHistory paymentsHistory = new PaymentsHistory();
+        if(accountService.fetchedAccount(accountId).isPresent()) {
+            activeBookings.setAccountId(accountId);
+            paymentsHistory.setAccountId(accountId);
+        }
+        if(transportationRouteService.getOneRoute(routeId).isPresent()) {
+            activeBookings.setRouteId(routeId);
+            paymentsHistory.setRouteId(routeId);
+        }
         activeBookingService.createNewBooking(activeBookings);
         paymentHistoryService.createPayment(paymentsHistory);
         return transportationRouteService.getOneRoute(routeId);

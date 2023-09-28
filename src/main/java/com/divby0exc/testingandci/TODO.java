@@ -28,9 +28,9 @@
     13. Mocka databasen till ActiveBookingService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
     14. Mocka databasen till PaymentHistoryService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
     15. Mocka databasen till TransportationRouteService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
-    16. Add username id to activebooking when created
-    17. Add username id to paymenthistory when created
-    18. Create a function in transportservice to fetch
+    done 16. Add username id to activebooking when created
+    done 17. Add username id to paymenthistory when created
+    done 18. Create a function in transportservice to fetch
     19. When you create a booking you need to create a payment and fetch routeid from the trip and add it to both activebooking and paymenthistory
 
     */
