@@ -25,7 +25,6 @@ class AuthControllerTest {
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         String baseUrl = "http://localhost:" + 8080 + "/auth/login";
-        System.out.println(testRestTemplate.postForEntity(baseUrl,account,Account.class));
-        testRestTemplate.postForEntity(baseUrl, account, Account.class).getStatusCode().is1xxInformational(); /*.is2xxSuccessful();*/
+        assertEquals(200,testRestTemplate.postForEntity(baseUrl, account, Account.class).getStatusCode().value());
     }
 }

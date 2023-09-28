@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @PostMapping("login")
-    public ResponseEntity<String> signIn(@RequestBody Account authDetails) {
-        String token = JWTUtil.sign(authDetails);
+    public String signIn(@RequestBody Account authDetails) {
 
-        return ResponseEntity
-                .ok(token);
+        return JWTUtil.sign(authDetails);
 
     }
 }
