@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import static jakarta.persistence.GenerationType.*;
+
 @Entity
 @Data
 @Builder
@@ -13,7 +15,7 @@ import lombok.*;
 @AllArgsConstructor
 public class TransportationRoute {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = AUTO)
     private Long routeId;
     private String departurePoint;
     private String arrivalPoint;

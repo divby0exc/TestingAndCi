@@ -1,9 +1,6 @@
 package com.divby0exc.testingandci.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +9,13 @@ import lombok.NoArgsConstructor;
 
 import java.io.EOFException;
 
+import static jakarta.persistence.GenerationType.*;
+
 @Entity
 @Data
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = AUTO)
     private Long id;
     private String username;
     private String contactInfo;

@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import static jakarta.persistence.GenerationType.*;
+
 @Entity
 @Data
 public class ActiveBookings {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long accountId;
     private Long routeId;
 

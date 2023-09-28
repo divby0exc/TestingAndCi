@@ -70,7 +70,7 @@ public class AccountTest {
         Account account = new Account();
         account.setUsername("Dani");
         account.setContactInfo("dani@gmail.com");
-        account.setPaymentInfo("123456");
+        account.setPaymentInfo("0761111111");
         account.setAccountType("USER");
 
         Account createdAccount = restTemplate.postForObject(baseUrl, account, Account.class);
@@ -79,7 +79,7 @@ public class AccountTest {
         assertNotNull(createdAccount.getId());
         assertEquals("Dani", createdAccount.getUsername());
         assertEquals("dani@gmail.com", createdAccount.getContactInfo());
-        assertEquals("123456", createdAccount.getPaymentInfo());
+        assertEquals("0761111111", createdAccount.getPaymentInfo());
         assertEquals("USER", createdAccount.getAccountType());
     }
 
