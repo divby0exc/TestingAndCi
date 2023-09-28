@@ -14,8 +14,6 @@ public class AuthController {
 
     @PostMapping("login")
     public String signIn(@RequestBody Account authDetails) {
-
-        return JWTUtil.sign(authDetails);
-
+        return JWTUtil.createJWT(authDetails.getId().toString(), authDetails.getUsername());
     }
 }

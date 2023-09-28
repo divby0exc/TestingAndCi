@@ -1,36 +1,46 @@
 package com.divby0exc.testingandci.util;
 
-import com.divby0exc.testingandci.model.Account;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
-
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
+
+import io.jsonwebtoken.*;
+
 import java.util.Date;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Claims;
+
 public class JWTUtil {
-
     static final String SECRET_KEY = "wsvdoiphj;sdcvio[jwesvrdffio[jfd";
-    static final long EXP_TIME = (1000 * 60) * 60;
-    public static String sign(Account account) {
-        Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
-        return Jwts
-                .builder()
-                .claim("username", account.getUsername())
-                .claim("role", account.getAccountType())
-                .setExpiration(new Date(System.currentTimeMillis()
-                        + EXP_TIME))
-                .signWith(key)
-                .compact();
-    }
+    public static String createJWT(String id, String issuer) {
 
-    public static boolean verify(String token) {
-        Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        //The JWT signature algorithm we will be using to sign the token
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parse(token) != null;
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
+        //We will sign our JWT with our ApiKey secret
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+        //Let's set the JWT Claims
+        JwtBuilder builder = Jwts.builder().setId(id)
+                .setIssuedAt(now)
+                .setSubject("madeUpJWTString")
+                .setIssuer(issuer)
+                .signWith(signatureAlgorithm, signingKey);
+
+        //if it has been specified, let's add the expiration
+//        if (ttlMillis > 0) {
+//            long expMillis = nowMillis + ttlMillis;
+//            Date exp = new Date(expMillis);
+//            builder.setExpiration(exp);
+//        }
+
+        //Builds the JWT and serializes it to a compact, URL-safe string
+        return builder.compact();
     }
 }
