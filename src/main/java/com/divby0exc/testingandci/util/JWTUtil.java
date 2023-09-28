@@ -1,16 +1,17 @@
 package com.divby0exc.testingandci.util;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Serializer;
+
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
-
-import io.jsonwebtoken.*;
-
 import java.util.Date;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.Claims;
-
+@JsonSerialize
 public class JWTUtil {
 
     public static String createJWT(String id, String issuer) {
