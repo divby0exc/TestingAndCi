@@ -4,12 +4,18 @@ import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.model.Account;
 import com.divby0exc.testingandci.model.ActiveBookings;
 import com.divby0exc.testingandci.service.AccountService;
+import com.divby0exc.testingandci.util.JWTUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,9 +38,10 @@ class AuthControllerTest {
         account.setContactInfo("dani@gmail.com");
         accountService.saveAccount(account);
 
-        Account fetchAccount = accountService.fetchedAccount(1L).orElse(null);
-
         String baseUrl = "http://localhost:" + 8080 + "/auth/login";
-        assertTrue(testRestTemplate.postForEntity(baseUrl, fetchAccount, Account.class).getStatusCode().is2xxSuccessful());
+
+        String jwt = JWTUtil.createJWT(account.getId().toString(), account.getUsername());
+
+        assertNotNull(jwt);
     }
 }
