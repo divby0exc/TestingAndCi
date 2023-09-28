@@ -28,7 +28,7 @@ public class ActiveBookingController {
     }
     //    GET
     @GetMapping("get_booking_list/{accountId}")
-    public List<ActiveBookings> fetchActiveBookingList(@PathVariable Long accountId) {
+    public List<ActiveBookings> fetchActiveBookingList(@PathVariable Long accountId) throws InvalidBookingIdException {
         return activeBookingService.fetchActiveBookingList(accountId);
     }
     //    Delete

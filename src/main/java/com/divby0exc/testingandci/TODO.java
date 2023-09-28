@@ -31,6 +31,6 @@
     done 16. Add username id to activebooking when created
     done 17. Add username id to paymenthistory when created
     done 18. Create a function in transportservice to fetch
-    19. When you create a booking you need to create a payment and fetch routeid from the trip and add it to both activebooking and paymenthistory
+    done 19. When you create a booking you need to create a payment and fetch routeid from the trip and add it to both activebooking and paymenthistory
 
     */
