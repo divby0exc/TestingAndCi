@@ -2,6 +2,7 @@ package com.divby0exc.testingandci.model;
 
 
 import com.divby0exc.testingandci.TestingAndCiApplication;
+import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
 import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
@@ -52,26 +53,32 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfUsernameIsEmpty() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
-        account.setUsername("divby0exc");
+        account.setUsername("");
+
+        assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account));
 
     }
 
     @Test
     public void testingSaveAccountMethodIfUserInputsAnythingElseThenUSERorADMINorPROVIDER() {
         Account account = new Account();
-        account.setAccountType("USER");
+        account.setId(1L);
+        account.setAccountType("Sasuke");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
     }
 
     @Test
     public void testingSaveAccountMethodIfContactInfoIsNull() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -82,6 +89,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfContactInfoIsEmpty() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -92,6 +100,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfContactInfoDoNotContainsAnAtSymbol() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -102,6 +111,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsNull() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -112,6 +122,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsEmpty() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -122,6 +133,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsNull() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -132,6 +144,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsEmpty() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -142,6 +155,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_DigitsInsteadOf_11() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -152,6 +166,7 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_DigitsInsteadOf_12() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
