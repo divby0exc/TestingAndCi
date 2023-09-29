@@ -10,55 +10,54 @@ class AccountTest {
     }
 
     @Test
-    public void testingIfUsernameIsNotEmpty() {
+    public void testingSaveAccountMethodIfUsernameIsNotEmpty() {
 
     }
 
     @Test
-    public void testingIfContactInfoIsNotNull() {
+    public void testingSaveAccountMethodIfContactInfoIsNotNull() {
 
     }
 
     @Test
-    public void testingIfContactInfoIsNotEmpty() {
+    public void testingSaveAccountMethodIfContactInfoIsNotEmpty() {
 
     }
 
     @Test
-    public void testingIfContactInfoContainsAnAtSymbol() {
+    public void testingSaveAccountMethodIfContactInfoContainsAnAtSymbol() {
 
     }
 
     @Test
-    public void testingIfPaymentInfoIsNotNull() {
+    public void testingSaveAccountMethodIfPaymentInfoIsNotNull() {
 
     }
 
     @Test
-    public void testingIfPaymentInfoIsNotEmpty() {
+    public void testingSaveAccountMethodIfPaymentInfoIsNotEmpty() {
 
     }
 
     @Test
-    public void testingIfAccountTypeIsNotNull() {
+    public void testingSaveAccountMethodIfAccountTypeIsNotNull() {
 
     }
 
     @Test
-    public void testingIfAccountTypeIsNotEmpty() {
+    public void testingSaveAccountMethodIfAccountTypeIsNotEmpty() {
 
     }
 
     @Test
-    public void testingIfPhoneNumberThatStartsWith_07_Is_10_Digits() {
+    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_Digits() {
 
     }
 
     @Test
-    public void testingIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
+    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
 
     }
-
 
 
 }
