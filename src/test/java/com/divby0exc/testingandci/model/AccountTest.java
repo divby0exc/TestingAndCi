@@ -178,13 +178,16 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsEmpty() {
         Account account = new Account();
-        account.setAccountType("USER");
+        account.setAccountType("");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
         assertThrows(InvalidAuthTypeException.class,
                 () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("Account type cannot be empty",
+                assertThrows(InvalidAuthTypeException.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
