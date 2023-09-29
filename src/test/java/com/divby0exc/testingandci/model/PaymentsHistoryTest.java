@@ -3,6 +3,7 @@ package com.divby0exc.testingandci.model;
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.repository.IPaymentHistoryRepository;
 import com.divby0exc.testingandci.service.PaymentHistoryService;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -26,5 +27,15 @@ class PaymentsHistoryTest {
 
     @Autowired
     PaymentHistoryService paymentHistoryService;
+
+    @Test
+    public void testThatInvalidPaymentIdIsNotThrown() {
+
+    }
+
+    @Test
+    public void endToEndTestAndMockingResponseWhenTicketAreBought() {
+
+    }
 
 }
