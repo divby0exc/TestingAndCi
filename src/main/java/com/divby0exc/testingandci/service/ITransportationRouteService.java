@@ -1,5 +1,7 @@
 package com.divby0exc.testingandci.service;
 
+import com.divby0exc.testingandci.handlerexception.InvalidArrivalPointInputException;
+import com.divby0exc.testingandci.handlerexception.InvalidDeparturePointInputException;
 import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
 import com.divby0exc.testingandci.handlerexception.TransportationRoutesIsEmptyException;
 import com.divby0exc.testingandci.model.TransportationRoute;
@@ -16,7 +18,7 @@ public interface ITransportationRouteService {
     List<TransportationRoute> fetchAllRoutes() throws TransportationRoutesIsEmptyException;
 
     /*Create a new route*/
-    TransportationRoute createNewRoute(TransportationRoute newRoute);
+    TransportationRoute createNewRoute(TransportationRoute newRoute) throws InvalidArrivalPointInputException, InvalidDeparturePointInputException;
 
     /*Get one route by id*/
     Optional<TransportationRoute> getOneRoute(Long routeId) throws InvalidRouteIdException;

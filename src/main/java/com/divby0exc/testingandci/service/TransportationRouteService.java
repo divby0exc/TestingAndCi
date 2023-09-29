@@ -1,5 +1,7 @@
 package com.divby0exc.testingandci.service;
 
+import com.divby0exc.testingandci.handlerexception.InvalidArrivalPointInputException;
+import com.divby0exc.testingandci.handlerexception.InvalidDeparturePointInputException;
 import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
 import com.divby0exc.testingandci.handlerexception.TransportationRoutesIsEmptyException;
 import com.divby0exc.testingandci.model.TransportationRoute;
@@ -30,7 +32,16 @@ public class TransportationRouteService implements ITransportationRouteService {
     }
 
     @Override
-    public TransportationRoute createNewRoute(TransportationRoute newRoute) {
+    public TransportationRoute createNewRoute(TransportationRoute newRoute) throws InvalidArrivalPointInputException, InvalidDeparturePointInputException {
+        if(newRoute.getArrivalPoint() == null) {
+            throw new InvalidArrivalPointInputException("Arrival point cannot be null");
+        } else if(newRoute.getArrivalPoint().isEmpty()) {
+            throw new InvalidArrivalPointInputException("Arrival point cannot be empty");
+        } else if(newRoute.getDeparturePoint() == null) {
+            throw new InvalidDeparturePointInputException("Departure point cannot be null");
+        } else if(newRoute.getDeparturePoint().isEmpty()) {
+            throw new InvalidDeparturePointInputException("Departure point cannot be empty");
+        }
         return repository.save(newRoute);
     }
 
