@@ -78,7 +78,7 @@ class ActiveBookingsTest {
 
     @Test
     public void testThatInvalidIdIsNotThrownWhenFetchingBookingList() {
-
+        assertDoesNotThrow(() -> activeBookingService.fetchActiveBookingList(2L));
     }
 
 }
