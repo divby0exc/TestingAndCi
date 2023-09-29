@@ -55,7 +55,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingfIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
+    public void testingIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
 
     }
 
