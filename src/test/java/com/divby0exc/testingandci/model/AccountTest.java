@@ -301,8 +301,12 @@ class AccountTest {
     }
 
     @Test
-    public void testFetchedAccountMethodThatNoExceptionIsThrown() {
+    public void testFetchedAccountMethodThatNoExceptionIsThrown() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
+        assertNotNull(accountToTestFullIntegration);
 
+        accountService.saveAccount(accountToTestFullIntegration);
+
+        assertDoesNotThrow(() -> accountService.fetchedAccount(1L));
     }
 
                     /*  End to End test     */
