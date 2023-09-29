@@ -18,7 +18,8 @@ class AccountTest {
 
     @BeforeEach
     public void setup() {
-        //        Create object
+        Account accountToTestFullIntegration = new Account();
+
     }
 
     @Test
@@ -73,6 +74,16 @@ class AccountTest {
 
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
+
+    }
+
+    @Test
+    public void testSaveMethodToDatabaseThatNoExceptionIsThrown() {
+
+    }
+
+    @Test
+    public void testUpdateMethodToDatabaseThatNoExceptionIsThrown() {
 
     }
 
