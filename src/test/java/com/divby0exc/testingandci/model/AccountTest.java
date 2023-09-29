@@ -250,12 +250,26 @@ class AccountTest {
     }
 
     @Test
-    public void testUpdateMethodToDatabaseThatNoExceptionIsThrown() {
+    public void testUpdateMethodToDatabaseThatNoExceptionIsThrown() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
+        assertNotNull(accountToTestFullIntegration);
+
+        accountService.saveAccount(accountToTestFullIntegration);
+        assertEquals("divby0exc", accountToTestFullIntegration.getUsername(), "Username of account I just saved was not divby0exc");
+
+        Account retrievedAcc = accountService.fetchedAccount(1L).orElse(null);
+        assertNotNull(retrievedAcc, "The retrieved account is null");
+        retrievedAcc.setUsername("pookey");
+        accountService.updateAccount(retrievedAcc);
+
+        Account retrievedAccAfterUsernameChange = accountService.fetchedAccount(1L).orElse(null);
+        assertNotNull(retrievedAccAfterUsernameChange, "Retrieved acc after username change is null");
+
+        assertEquals("pookey", retrievedAccAfterUsernameChange.getUsername(), "Username did not get updated to pookey");
 
     }
 
     @Test
-    public void testDeleteMethodFromDatabaseThatNoExceptionIsThrown() {
+    public void testDeleteMethodFromDatabaseThatNoExceptionIsThrown() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
 
     }
 
