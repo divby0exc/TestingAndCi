@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 class AccountTest {
 
     @Test
-    public void testingIfUsernameIsNotNull() {
+    public void testingSaveAccountMethodIfUsernameIsNotNull() {
 
     }
 
