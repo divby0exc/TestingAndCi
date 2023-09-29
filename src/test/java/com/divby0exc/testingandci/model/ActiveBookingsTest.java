@@ -42,11 +42,11 @@ class ActiveBookingsTest {
     @BeforeEach
     void init() {
         activeBookings.setRouteId(1L);
-        activeBookings.setAccountId(1L);
+        activeBookings.setAccountId(2L);
         activeBookings2.setRouteId(2L);
-        activeBookings2.setAccountId(1L);
+        activeBookings2.setAccountId(2L);
         activeBookings3.setRouteId(3L);
-        activeBookings3.setAccountId(1L);
+        activeBookings3.setAccountId(2L);
     }
 
     @Test
@@ -55,9 +55,13 @@ class ActiveBookingsTest {
         activeBookingService.createNewBooking(activeBookings2);
         activeBookingService.createNewBooking(activeBookings3);
 
-        List<ActiveBookings> activeBookingsList = new ArrayList<>(activeBookingService.fetchBookingList());
+        List<ActiveBookings> activeBookingsList = new ArrayList<>(activeBookingService.fetchActiveBookingList(2L));
 
         assertEquals(3, activeBookingsList.size());
+
+        activeBookingService.deleteBooking(activeBookingsList.get(0).getBookingId());
+
+        assertEquals(2, activeBookingService.fetchActiveBookingList(2L).size());
     }
 
     @Test
