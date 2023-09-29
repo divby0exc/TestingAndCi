@@ -34,7 +34,15 @@ class AccountTest {
 
     }
 
+    @Test
+    public void testingIfAccountTypeIsNotNull() {
 
+    }
+
+    @Test
+    public void testingIfAccountTypeIsNotEmpty() {
+
+    }
 
 
 
