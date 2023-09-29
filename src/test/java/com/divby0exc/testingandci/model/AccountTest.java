@@ -4,6 +4,7 @@ package com.divby0exc.testingandci.model;
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
 import com.divby0exc.testingandci.handlerexception.InvalidContactInfo;
+import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
 import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
@@ -130,20 +131,20 @@ class AccountTest {
         assertEquals("A valid email address must contain an @ symbol",
                 assertThrows(InvalidContactInfo.class,
                         () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
-
     }
 
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsNull() {
         Account account = new Account();
         account.setAccountType("USER");
-        account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
-        assertThrows(InvalidAuthTypeException.class,
+        assertThrows(InvalidPaymentInfoException.class,
                 () -> accountServiceMockedRepo.saveAccount(account));
-
+        assertEquals("Payment info cannot be null",
+                assertThrows(InvalidPaymentInfoException.class,
+                () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
     }
 
     @Test
