@@ -42,9 +42,9 @@ implements IActiveBookingService{
     }
 
     @Override
-    public Optional<ActiveBookings> fetchOneBooking(Long accountId) throws InvalidBookingIdException {
-        if(!repository.existsById(accountId))
+    public Optional<ActiveBookings> fetchOneBooking(Long bookingId) throws InvalidBookingIdException {
+        if(!repository.existsById(bookingId))
             throw new InvalidBookingIdException("Booking id not found");
-        return repository.findById(accountId);
+        return repository.findById(bookingId);
     }
 }

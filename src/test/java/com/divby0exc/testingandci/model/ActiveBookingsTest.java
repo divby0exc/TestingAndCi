@@ -66,8 +66,14 @@ class ActiveBookingsTest {
     }
 
     @Test
-    public void testThatInvalidIdIsNotThrownWhenFetchingOneBooking() {
+    public void testThatInvalidIdIsNotThrownWhenFetchingOneBooking() throws InvalidBookingIdException {
+        ActiveBookings fetchedBooking = activeBookingService.fetchOneBooking(1L).orElse(null);
 
+        assertNotNull(fetchedBooking);
+
+        assertEquals(2L, fetchedBooking.getAccountId());
+        assertEquals(1L, fetchedBooking.getBookingId());
+        assertEquals(1L, fetchedBooking.getRouteId());
     }
 
     @Test
