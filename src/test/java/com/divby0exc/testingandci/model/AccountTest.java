@@ -122,11 +122,14 @@ class AccountTest {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
-        account.setContactInfo("dani@gmail.com");
+        account.setContactInfo("danigmail.com");
         account.setUsername("divby0exc");
 
-        assertThrows(InvalidAuthTypeException.class,
+        assertThrows(InvalidContactInfo.class,
                 () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("A valid email address must contain an @ symbol",
+                assertThrows(InvalidContactInfo.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
