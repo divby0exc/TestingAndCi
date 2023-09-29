@@ -39,18 +39,18 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfUsernameIsNotNull() {
+    public void testingSaveAccountMethodIfUsernameIsNull() {
         Account account = new Account();
+        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
-        account.setUsername("divby0exc");
 
         assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account));
     }
 
     @Test
-    public void testingSaveAccountMethodIfUsernameIsNotEmpty() {
+    public void testingSaveAccountMethodIfUsernameIsEmpty() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -70,7 +70,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfContactInfoIsNotNull() {
+    public void testingSaveAccountMethodIfContactInfoIsNull() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -80,7 +80,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfContactInfoIsNotEmpty() {
+    public void testingSaveAccountMethodIfContactInfoIsEmpty() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -90,7 +90,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfContactInfoContainsAnAtSymbol() {
+    public void testingSaveAccountMethodIfContactInfoDoNotContainsAnAtSymbol() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -100,7 +100,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfPaymentInfoIsNotNull() {
+    public void testingSaveAccountMethodIfPaymentInfoIsNull() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -110,7 +110,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfPaymentInfoIsNotEmpty() {
+    public void testingSaveAccountMethodIfPaymentInfoIsEmpty() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -120,7 +120,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfAccountTypeIsNotNull() {
+    public void testingSaveAccountMethodIfAccountTypeIsNull() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -130,7 +130,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfAccountTypeIsNotEmpty() {
+    public void testingSaveAccountMethodIfAccountTypeIsEmpty() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -140,7 +140,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_Digits() {
+    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_DigitsInsteadOf_11() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -150,7 +150,7 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
+    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_DigitsInsteadOf_12() {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
@@ -177,6 +177,13 @@ class AccountTest {
 
     @Test
     public void testFetchedAccountMethodThatNoExceptionIsThrown() {
+
+    }
+
+                    /*  End to End test     */
+
+    @Test
+    public void endToEndTest() {
 
     }
 }
