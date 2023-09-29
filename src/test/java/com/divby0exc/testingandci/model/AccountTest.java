@@ -42,7 +42,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfUsernameIsNull() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -53,7 +52,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfUsernameIsEmpty() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -66,7 +64,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfUserInputsAnythingElseThenUSERorADMINorPROVIDER() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("Sasuke");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -78,7 +75,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfContactInfoIsNull() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -89,7 +85,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfContactInfoIsEmpty() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -100,7 +95,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfContactInfoDoNotContainsAnAtSymbol() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -111,7 +105,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsNull() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -122,7 +115,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsEmpty() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -133,7 +125,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsNull() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -144,7 +135,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsEmpty() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -155,7 +145,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_DigitsInsteadOf_11() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
@@ -166,7 +155,6 @@ class AccountTest {
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_DigitsInsteadOf_12() {
         Account account = new Account();
-        account.setId(1L);
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
