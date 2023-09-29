@@ -2,10 +2,7 @@ package com.divby0exc.testingandci.model;
 
 
 import com.divby0exc.testingandci.TestingAndCiApplication;
-import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
-import com.divby0exc.testingandci.handlerexception.InvalidContactInfo;
-import com.divby0exc.testingandci.handlerexception.InvalidPaymentInfoException;
-import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
 import org.junit.jupiter.api.Assertions;
@@ -151,12 +148,15 @@ class AccountTest {
     public void testingSaveAccountMethodIfPaymentInfoIsEmpty() {
         Account account = new Account();
         account.setAccountType("USER");
-        account.setPaymentInfo("0761111111");
+        account.setPaymentInfo("");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
-        assertThrows(InvalidAuthTypeException.class,
+        assertThrows(InvalidPaymentInfoException.class,
                 () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("Payment info cannot be empty",
+                assertThrows(InvalidPaymentInfoException.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
