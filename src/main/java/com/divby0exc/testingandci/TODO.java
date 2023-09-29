@@ -7,7 +7,7 @@ TODO:
     10. genera en jwt token via post jag kan mocka en jwt så fejka ett giltigt konto vid auth
     11. i service ska jag göra en auth genom att mocka ett konto. input oväsentligt så länge de är en giltig jwt sträng om auth ger tebaka ett fejkat konto så uppdaterar du
     done 13. Mocka databasen till ActiveBookingService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
-    done 14. Mocka databasen till PaymentHistoryService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
+    done 14. Mocka databasen till AccountService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
     done 15. Mocka databasen till TransportationRouteService för att testa service logiken o skicka tebaka konto objektet som repot hade gjort vanligtvis
     done 5. Controller for Account
     done POST

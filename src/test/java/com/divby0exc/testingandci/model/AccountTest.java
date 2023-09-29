@@ -40,59 +40,116 @@ class AccountTest {
 
     @Test
     public void testingSaveAccountMethodIfUsernameIsNotNull() {
-        assertThrows(InvalidUsernameInputException.class, () -> method to invoke);
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
+
+        assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account));
     }
 
     @Test
     public void testingSaveAccountMethodIfUsernameIsNotEmpty() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfContactInfoIsNotNull() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfContactInfoIsNotEmpty() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfContactInfoContainsAnAtSymbol() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsNotNull() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfPaymentInfoIsNotEmpty() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsNotNull() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfAccountTypeIsNotEmpty() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_Digits() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
     @Test
     public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
 
     }
 
+                /*  Real integration test   */
     @Test
     public void testSaveMethodToDatabaseThatNoExceptionIsThrown() {
 

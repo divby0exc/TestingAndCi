@@ -1,7 +1,6 @@
 package com.divby0exc.testingandci.controller;
 
-import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
-import com.divby0exc.testingandci.handlerexception.TransportationRoutesIsEmptyException;
+import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.model.TransportationRoute;
 import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class TransportationRouteController {
 
     //    POST
     @PostMapping("create_route")
-    public TransportationRoute createRoute(@RequestBody TransportationRoute transportationRoute) {
+    public TransportationRoute createRoute(@RequestBody TransportationRoute transportationRoute) throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
         return transportationRouteService.createNewRoute(transportationRoute);
     }
 
@@ -28,7 +27,7 @@ public class TransportationRouteController {
     }
     //    PUT
     @PutMapping("update_departure/{routeId}")
-    public TransportationRoute updateDeparture(@PathVariable Long routeId, @RequestBody TransportationRoute transportationRoute) throws InvalidRouteIdException {
+    public TransportationRoute updateDeparture(@PathVariable Long routeId, @RequestBody TransportationRoute transportationRoute) throws InvalidRouteIdException, InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
         transportationRoute.setRouteId(routeId);
         return transportationRouteService.updateRouteDiscount(transportationRoute);
     }
