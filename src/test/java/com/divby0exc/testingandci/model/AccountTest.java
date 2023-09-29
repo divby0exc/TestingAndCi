@@ -3,6 +3,7 @@ package com.divby0exc.testingandci.model;
 
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.InvalidAuthTypeException;
+import com.divby0exc.testingandci.handlerexception.InvalidContactInfo;
 import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
@@ -84,10 +85,11 @@ class AccountTest {
         Account account = new Account();
         account.setAccountType("USER");
         account.setPaymentInfo("0761111111");
-        account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
-        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+        assertThrows(InvalidContactInfo.class, () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("Contact info cannot be null",
+                assertThrows(InvalidContactInfo.class, () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
