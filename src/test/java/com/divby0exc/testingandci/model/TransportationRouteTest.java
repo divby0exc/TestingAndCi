@@ -3,6 +3,7 @@ package com.divby0exc.testingandci.model;
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.repository.ITransportationRouteRepository;
 import com.divby0exc.testingandci.service.TransportationRouteService;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,5 +26,42 @@ class TransportationRouteTest {
 
     @Autowired
     TransportationRouteService routeService;
+
+    @Test
+    public void testThatUpdateRouteDoesNotThrowInvalidRouteId() {
+
+    }
+
+    @Test
+    public void testThatFetchAllRoutesDoesNotThrowRoutesIsEmpty() {
+
+    }
+
+    @Test
+    public void testThatGetOneRouteDoesNotThrowInvalidRouteId() {
+
+    }
+
+    @Test
+    public void testSaveMehtodThatDeparturePointDoesNotThrowInvalidDeparturePointInputWhenEmpty() {
+
+    }
+
+    @Test
+    public void testSaveMehtodThatDeparturePointDoesNotThrowInvalidDeparturePointInputWhenNull() {
+
+    }
+
+    @Test
+    public void testSaveMethodThatArrivalPointDoesNotThrowInvalidArrivalPointInputWhenEmpty() {
+
+    }
+
+    @Test
+    public void testSaveMethodThatArrivalPointDoesNotThrowInvalidArrivalPointInputWhenNull() {
+
+    }
+
+
 
 }
