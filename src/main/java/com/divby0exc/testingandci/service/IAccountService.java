@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface IAccountService {
     /*Create new account*/
-    Account saveAccount(Account newAccount) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidContactInfo, InvalidAuthTypeException;
+    Account saveAccount(Account newAccount) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidContactInfo, InvalidAuthTypeException, InvalidAccountIdException;
 
     /*Update field*/
     Account updateAccount(Account oldAccount);

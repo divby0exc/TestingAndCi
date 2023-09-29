@@ -18,7 +18,7 @@ public class AccountService implements IAccountService {
     /*Create custom exception for each unvalid fields*/
 
     @Override
-    public Account saveAccount(Account newAccount) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidContactInfo, InvalidAuthTypeException {
+    public Account saveAccount(Account newAccount) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidContactInfo, InvalidAuthTypeException, InvalidAccountIdException {
         if (newAccount.getUsername() == null) {
             throw new InvalidUsernameInputException("Username cannot be null");
         } else if (newAccount.getUsername().isEmpty()) {
@@ -41,6 +41,8 @@ public class AccountService implements IAccountService {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with +46 should be 11 digits");
         } else if (!newAccount.getContactInfo().contains("@")) {
             throw new InvalidContactInfo("A valid email address must contain an @ symbol");
+        } else if(newAccount.getId() == null) {
+            throw new InvalidAccountIdException("No id has been given");
         }
         return repository.save(newAccount);
     }
