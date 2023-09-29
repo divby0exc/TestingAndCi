@@ -33,9 +33,4 @@ class PaymentsHistoryTest {
 
     }
 
-    @Test
-    public void endToEndTestAndMockingResponseWhenTicketAreBought() {
-
-    }
-
 }
