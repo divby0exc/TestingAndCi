@@ -80,6 +80,8 @@ class AccountTest {
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+
     }
 
     @Test
@@ -89,6 +91,8 @@ class AccountTest {
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
+
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
 
     }
 
@@ -100,6 +104,8 @@ class AccountTest {
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+
     }
 
     @Test
@@ -109,6 +115,8 @@ class AccountTest {
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
+
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
 
     }
 
@@ -120,6 +128,8 @@ class AccountTest {
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+
     }
 
     @Test
@@ -129,6 +139,8 @@ class AccountTest {
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
+
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
 
     }
 
@@ -140,6 +152,8 @@ class AccountTest {
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+
     }
 
     @Test
@@ -150,6 +164,8 @@ class AccountTest {
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+
     }
 
     @Test
@@ -159,6 +175,8 @@ class AccountTest {
         account.setPaymentInfo("0761111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
+
+        assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
 
     }
 
