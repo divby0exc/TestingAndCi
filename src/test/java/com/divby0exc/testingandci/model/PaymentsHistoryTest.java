@@ -29,7 +29,7 @@ class PaymentsHistoryTest {
     PaymentHistoryService paymentHistoryService;
 
     @Test
-    public void testThatInvalidPaymentIdIsNotThrown() {
+    public void testThatInvalidPaymentIdIsNotThrownWhenYouFetchPaymentList() {
 
     }
 
