@@ -87,5 +87,13 @@ class AccountTest {
 
     }
 
+    @Test
+    public void testDeleteMethodFromDatabaseThatNoExceptionIsThrown() {
 
+    }
+
+    @Test
+    public void testFetchedAccountMethodThatNoExceptionIsThrown() {
+
+    }
 }
