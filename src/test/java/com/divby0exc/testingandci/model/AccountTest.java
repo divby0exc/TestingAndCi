@@ -270,7 +270,14 @@ class AccountTest {
 
     @Test
     public void testDeleteMethodFromDatabaseThatNoExceptionIsThrown() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
+        assertNotNull(accountToTestFullIntegration);
 
+        assertDoesNotThrow(() -> accountService.saveAccount(accountToTestFullIntegration));
+
+        Account fetchedAccount = accountService.fetchedAccount(1L).orElse(null);
+        assertNotNull(fetchedAccount);
+
+        assertDoesNotThrow(() -> accountService.deleteAccount(fetchedAccount.getId()));
     }
 
     @Test
