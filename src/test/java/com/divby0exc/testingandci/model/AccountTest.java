@@ -24,6 +24,16 @@ class AccountTest {
 
     }
 
+    @Test
+    public void testingIfPaymentInfoIsNotNull() {
+
+    }
+
+    @Test
+    public void testingIfPaymentInfoIsNotEmpty() {
+
+    }
+
 
 
 
