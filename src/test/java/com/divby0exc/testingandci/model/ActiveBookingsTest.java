@@ -81,4 +81,9 @@ class ActiveBookingsTest {
         assertDoesNotThrow(() -> activeBookingService.fetchActiveBookingList(2L));
     }
 
+    @Test
+    public void endToEndTest() {
+
+    }
+
 }
