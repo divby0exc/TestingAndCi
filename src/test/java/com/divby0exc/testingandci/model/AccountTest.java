@@ -1,12 +1,29 @@
 package com.divby0exc.testingandci.model;
 
-import org.junit.jupiter.api.Test;
 
+import com.divby0exc.testingandci.TestingAndCiApplication;
+import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
+@SpringBootTest(classes = {TestingAndCiApplication.class})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class AccountTest {
+
+    @BeforeEach
+    public void setup() {
+        //        Create object
+    }
 
     @Test
     public void testingSaveAccountMethodIfUsernameIsNotNull() {
-
+        assertThrows(InvalidUsernameInputException.class, () -> method to invoke);
     }
 
     @Test
