@@ -18,7 +18,7 @@ public class AccountController {
 
     //    POST
     @PostMapping("create_account")
-    public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo {
+    public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo, InvalidAccountIdException {
         return accountService.saveAccount(account);
     }
     //    GET
