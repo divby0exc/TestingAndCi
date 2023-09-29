@@ -42,7 +42,7 @@ public class AccountService implements IAccountService {
         } else if (newAccount.getPaymentInfo().startsWith("07") && newAccount.getPaymentInfo().length() != 10) {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with 07 needs to be 10 digits");
         } else if (newAccount.getPaymentInfo().startsWith("+46") && newAccount.getPaymentInfo().length() != 12) {
-            throw new InvalidPaymentInfoException("A valid mobile number that starts with +46 should be 11 digits");
+            throw new InvalidPaymentInfoException("A valid mobile number that starts with +46 should be 12 digits");
         } else if (!newAccount.getContactInfo().contains("@")) {
             throw new InvalidContactInfo("A valid email address must contain an @ symbol");
         }

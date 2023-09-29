@@ -217,15 +217,27 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_11_DigitsInsteadOf_12() {
+    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_Plus46_Is_Not_12_Digits() {
         Account account = new Account();
         account.setAccountType("USER");
-        account.setPaymentInfo("0761111111");
+        account.setPaymentInfo("+4676111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
-        assertThrows(InvalidAuthTypeException.class,
+        //        Testing with 11 digits
+        assertThrows(InvalidPaymentInfoException.class,
                 () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("A valid mobile number that starts with +46 should be 12 digits",
+                assertThrows(InvalidPaymentInfoException.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
+
+        //        Testing with 13 digits
+        account.setPaymentInfo("+467611111111");
+        assertThrows(InvalidPaymentInfoException.class,
+                () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("A valid mobile number that starts with +46 should be 12 digits",
+                assertThrows(InvalidPaymentInfoException.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
