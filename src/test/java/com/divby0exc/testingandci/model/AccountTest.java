@@ -192,15 +192,27 @@ class AccountTest {
     }
 
     @Test
-    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_10_DigitsInsteadOf_11() {
+    public void testingSaveAccountMethodIfPhoneNumberThatStartsWith_07_Is_Not_10_Digits() {
         Account account = new Account();
         account.setAccountType("USER");
-        account.setPaymentInfo("0761111111");
+        account.setPaymentInfo("076111111");
         account.setContactInfo("dani@gmail.com");
         account.setUsername("divby0exc");
 
-        assertThrows(InvalidAuthTypeException.class,
+        //        Testing with 9 digits
+        assertThrows(InvalidPaymentInfoException.class,
                 () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("A valid mobile number that starts with 07 needs to be 10 digits",
+                assertThrows(InvalidPaymentInfoException.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
+
+        //        Testing with 11 digits
+        account.setPaymentInfo("07611111111");
+        assertThrows(InvalidPaymentInfoException.class,
+                () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("A valid mobile number that starts with 07 needs to be 10 digits",
+                assertThrows(InvalidPaymentInfoException.class,
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
