@@ -36,6 +36,9 @@ class AccountTest {
     @BeforeEach
     public void setup() {
         Account accountToTestFullIntegration = new Account();
+        accountToTestFullIntegration.setPaymentInfo("0761111111");
+        accountToTestFullIntegration.setUsername("divby0exc");
+        accountToTestFullIntegration.setContactInfo("dani@gmail.com");
 
     }
 
