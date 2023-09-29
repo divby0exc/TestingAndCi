@@ -62,6 +62,37 @@ class TransportationRouteTest {
 
     }
 
+    @Test
+    public void testThatTransportationCompanyDoesNotThrowInvalidTransportationCompanyInputWhenNull() {
+
+    }
+
+    @Test
+    public void testThatTransportationCompanyDoesNotThrowInvalidTransportationCompanyInputWhenEmpty() {
+
+    }
+
+    @Test
+    public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenNull() {}
+
+    @Test
+    public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenEmpty() {
+
+    }
+
+    @Test
+    public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenNull() {}
+
+    @Test
+    public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenEmpty() {
+
+    }
+
+    @Test
+    public void testThatTicketPriceDoesNotThrowInvalidTicketPriceInputWhenValueIsLessOrEqualToZero() {
+
+    }
+
 
 
 }
