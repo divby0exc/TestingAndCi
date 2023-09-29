@@ -44,6 +44,16 @@ class AccountTest {
 
     }
 
+    @Test
+    public void testingIfPhoneNumberThatStartsWith_07_Is_10_Digits() {
+
+    }
+
+    @Test
+    public void testingfIfPhoneNumberThatStartsWith_Plus46_Is_11_Digits() {
+
+    }
+
 
 
 }
