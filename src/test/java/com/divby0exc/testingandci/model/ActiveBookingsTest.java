@@ -51,9 +51,9 @@ class ActiveBookingsTest {
 
     @Test
     public void testThatInvalidIdIsNotThrownWhenDeletingABooking() throws InvalidBookingIdException {
-        serviceWithMockedRepo.createNewBooking(activeBookings);
-        serviceWithMockedRepo.createNewBooking(activeBookings2);
-        serviceWithMockedRepo.createNewBooking(activeBookings3);
+        activeBookingService.createNewBooking(activeBookings);
+        activeBookingService.createNewBooking(activeBookings2);
+        activeBookingService.createNewBooking(activeBookings3);
 
         List<ActiveBookings> activeBookingsList = new ArrayList<>(activeBookingService.fetchBookingList());
 

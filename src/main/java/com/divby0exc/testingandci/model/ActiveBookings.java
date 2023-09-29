@@ -17,7 +17,8 @@ import static jakarta.persistence.GenerationType.*;
 @Data
 public class ActiveBookings {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = AUTO)
+    private Long bookingId;
     private Long accountId;
     private Long routeId;
 
