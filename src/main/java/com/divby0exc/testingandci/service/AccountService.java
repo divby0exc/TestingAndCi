@@ -25,16 +25,22 @@ public class AccountService implements IAccountService {
             throw new InvalidUsernameInputException("Username cannot be empty");
         } else if (newAccount.getContactInfo() == null) {
             throw new InvalidContactInfo("Contact info cannot be null");
+        } else if(newAccount.getContactInfo().isEmpty()) {
+            throw new InvalidContactInfo("Contact info cannot be empty");
         } else if (newAccount.getPaymentInfo() == null) {
             throw new InvalidPaymentInfoException("Payment info cannot be null");
+        } else if(newAccount.getPaymentInfo().isEmpty()) {
+            throw new InvalidPaymentInfoException("Payment info cannot be empty");
         } else if (newAccount.getAccountType() == null) {
             throw new InvalidAuthTypeException("Account type cannot be null");
+        } else if(newAccount.getAccountType().isEmpty()) {
+            throw new InvalidAuthTypeException("Account type cannot be empty");
         } else if (newAccount.getPaymentInfo().startsWith("07") && newAccount.getPaymentInfo().length() != 10) {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with 07 needs to be 10 digits");
         } else if (newAccount.getPaymentInfo().startsWith("+46") && newAccount.getPaymentInfo().length() != 12) {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with +46 should be 11 digits");
         } else if (!newAccount.getContactInfo().contains("@")) {
-            throw new InvalidContactInfo("A valid email address contains an @ symbol");
+            throw new InvalidContactInfo("A valid email address must contain an @ symbol");
         }
         return repository.save(newAccount);
     }
