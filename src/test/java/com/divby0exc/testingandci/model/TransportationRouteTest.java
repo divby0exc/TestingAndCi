@@ -73,7 +73,9 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenNull() {}
+    public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenNull() {
+
+    }
 
     @Test
     public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenEmpty() {
@@ -81,7 +83,9 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenNull() {}
+    public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenNull() {
+
+    }
 
     @Test
     public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenEmpty() {
