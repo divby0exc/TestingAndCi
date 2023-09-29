@@ -35,6 +35,10 @@ public class AccountService implements IAccountService {
             throw new InvalidAuthTypeException("Account type cannot be null");
         } else if(newAccount.getAccountType().isEmpty()) {
             throw new InvalidAuthTypeException("Account type cannot be empty");
+        } else if((newAccount.getAccountType().equalsIgnoreCase("USER")) ||
+                (newAccount.getAccountType().equalsIgnoreCase("ADMIN")) ||
+                (newAccount.getAccountType().equalsIgnoreCase("PROVIDER"))) {
+            throw new InvalidAuthTypeException("Account type must either be 'USER', 'ADMIN' or 'PROVIDER'");
         } else if (newAccount.getPaymentInfo().startsWith("07") && newAccount.getPaymentInfo().length() != 10) {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with 07 needs to be 10 digits");
         } else if (newAccount.getPaymentInfo().startsWith("+46") && newAccount.getPaymentInfo().length() != 12) {
