@@ -10,5 +10,8 @@ public interface IPaymentHistoryService {
 
     PaymentsHistory createPayment(PaymentsHistory paymentsHistory);
 
+    Optional<PaymentsHistory> fetchPayment(Long accountId) throws InvalidPaymentIdException;
+
+    List<PaymentsHistory> fetchPaymentList(Long accountId) throws InvalidPaymentIdException;
 
 }
