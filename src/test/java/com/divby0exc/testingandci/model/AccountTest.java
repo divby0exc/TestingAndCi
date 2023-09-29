@@ -1,11 +1,10 @@
 package com.divby0exc.testingandci.model;
 
-
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
-import org.junit.jupiter.api.Assertions;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,9 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest(classes = {TestingAndCiApplication.class})
@@ -33,13 +30,14 @@ class AccountTest {
     @Autowired
     private AccountService accountService;
 
+    private Account accountToTestFullIntegration = new Account();
+
     @BeforeEach
-    public void setup() {
-        Account accountToTestFullIntegration = new Account();
+    void init() {
         accountToTestFullIntegration.setPaymentInfo("0761111111");
         accountToTestFullIntegration.setUsername("divby0exc");
         accountToTestFullIntegration.setContactInfo("dani@gmail.com");
-
+        accountToTestFullIntegration.setAccountType("USER");
     }
 
     @Test
@@ -247,7 +245,8 @@ class AccountTest {
                 /*  Real integration test   */
     @Test
     public void testSaveMethodToDatabaseThatNoExceptionIsThrown() {
-
+        assertNotNull(accountToTestFullIntegration);
+        assertDoesNotThrow(() -> accountService.saveAccount(accountToTestFullIntegration));
     }
 
     @Test
