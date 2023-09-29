@@ -47,13 +47,14 @@ class ActiveBookingsTest {
         activeBookings2.setAccountId(2L);
         activeBookings3.setRouteId(3L);
         activeBookings3.setAccountId(2L);
+
+        activeBookingService.createNewBooking(activeBookings);
+        activeBookingService.createNewBooking(activeBookings2);
+        activeBookingService.createNewBooking(activeBookings3);
     }
 
     @Test
     public void testThatInvalidIdIsNotThrownWhenDeletingABooking() throws InvalidBookingIdException {
-        activeBookingService.createNewBooking(activeBookings);
-        activeBookingService.createNewBooking(activeBookings2);
-        activeBookingService.createNewBooking(activeBookings3);
 
         List<ActiveBookings> activeBookingsList = new ArrayList<>(activeBookingService.fetchActiveBookingList(2L));
 
