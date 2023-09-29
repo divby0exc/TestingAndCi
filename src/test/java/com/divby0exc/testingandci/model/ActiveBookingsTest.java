@@ -35,7 +35,12 @@ class ActiveBookingsTest {
     }
 
     @Test
-    public void  testThatInvalidIdIsNotThrownWhenFetchingOneBooking() {
+    public void testThatInvalidIdIsNotThrownWhenFetchingOneBooking() {
+
+    }
+
+    @Test
+    public void testThatInvalidIdIsNotThrownWhenFetchingBookingList() {
 
     }
 
