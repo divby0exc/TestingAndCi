@@ -60,6 +60,16 @@ class AccountTest {
     }
 
     @Test
+    public void testingSaveAccountMethodIfUserInputsAnythingElseThenUSERorADMINorPROVIDER() {
+        Account account = new Account();
+        account.setAccountType("USER");
+        account.setPaymentInfo("0761111111");
+        account.setContactInfo("dani@gmail.com");
+        account.setUsername("divby0exc");
+
+    }
+
+    @Test
     public void testingSaveAccountMethodIfContactInfoIsNotNull() {
         Account account = new Account();
         account.setAccountType("USER");
