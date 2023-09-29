@@ -7,12 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IPaymentHistoryService {
-    /*Fetch object*/
-    Optional<PaymentsHistory> fetchPayment(Long accountId) throws InvalidPaymentIdException;
 
     PaymentsHistory createPayment(PaymentsHistory paymentsHistory);
-
-    List<PaymentsHistory> fetchPaymentList(Long accountId) throws InvalidPaymentIdException;
 
 
 }
