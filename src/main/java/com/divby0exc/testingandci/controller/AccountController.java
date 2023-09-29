@@ -28,7 +28,7 @@ public class AccountController {
     }
     //    PUT
     @PutMapping("update_account/{id}")
-    public Account updateAccount(@PathVariable Long id, @RequestBody Account account) throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidContactInfo, InvalidPaymentInfoException {
+    public Account updateAccount(@PathVariable Long id, @RequestBody Account account) throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidContactInfo, InvalidPaymentInfoException, InvalidAccountIdException {
         account.setId(id);
         return accountService.saveAccount(account);
     }
