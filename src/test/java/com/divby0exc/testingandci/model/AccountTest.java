@@ -14,6 +14,17 @@ class AccountTest {
 
     }
 
+    @Test
+    public void testingIfContactInfoIsNotNull() {
+
+    }
+
+    @Test
+    public void testingIfContactInfoIsNotEmpty() {
+
+    }
+
+
 
 
 
