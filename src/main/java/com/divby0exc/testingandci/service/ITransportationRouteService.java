@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ITransportationRouteService {
     /*Update eventual discount*/
 
-    TransportationRoute updateRouteDiscount(TransportationRoute transportationRoute) throws InvalidRouteIdException;
+    TransportationRoute updateRouteDiscount(TransportationRoute transportationRoute) throws InvalidRouteIdException, InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException;
 
     /*Fetch a list of routes from all the contractors*/
     List<TransportationRoute> fetchAllRoutes() throws TransportationRoutesIsEmptyException;

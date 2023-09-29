@@ -18,7 +18,7 @@ public class TransportationRouteService implements ITransportationRouteService {
     ITransportationRouteRepository repository;
 
     @Override
-    public TransportationRoute updateRouteDiscount(TransportationRoute transportationRoute) throws InvalidRouteIdException {
+    public TransportationRoute updateRouteDiscount(TransportationRoute transportationRoute) throws InvalidRouteIdException, InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
         if(!repository.existsById(transportationRoute.getRouteId()))
             throw new InvalidRouteIdException("The given route ID was not found");
         return createNewRoute(transportationRoute);
