@@ -294,6 +294,10 @@ class AccountTest {
         assertNotNull(fetchedAccount);
 
         assertDoesNotThrow(() -> accountService.deleteAccount(fetchedAccount.getId()));
+
+        accountList = new ArrayList<>(accountService.fetchAllAccounts());
+
+        assertEquals(0, accountList.size());
     }
 
     @Test
