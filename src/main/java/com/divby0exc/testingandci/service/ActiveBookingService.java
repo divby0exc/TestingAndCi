@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ActiveBookingService
@@ -20,7 +21,12 @@ implements IActiveBookingService{
     public List<ActiveBookings> fetchActiveBookingList(Long accountId) throws InvalidBookingIdException {
         if(!repository.existsById(accountId))
             throw new InvalidBookingIdException("Booking id not found");
-        return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).toList();
+        return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ActiveBookings> fetchBookingList() {
+        return repository.findAll();
     }
 
     @Override

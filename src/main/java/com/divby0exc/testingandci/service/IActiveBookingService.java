@@ -13,6 +13,9 @@ public interface IActiveBookingService {
     /*Create new booking*/
     ActiveBookings createNewBooking(ActiveBookings activeBookings);
 
+    /*Fetch list for testing*/
+    List<ActiveBookings> fetchBookingList();
+
     /*Delete a booking*/
     void deleteBooking(Long bookingId) throws InvalidBookingIdException;
 

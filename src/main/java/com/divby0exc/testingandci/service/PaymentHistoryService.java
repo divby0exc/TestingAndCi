@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PaymentHistoryService
@@ -31,6 +32,6 @@ implements IPaymentHistoryService{
     public List<PaymentsHistory> fetchPaymentList(Long accountId) throws InvalidPaymentIdException {
         if(!repository.existsById(accountId))
             throw new InvalidPaymentIdException("Payment history id not found");
-        return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).toList();
+        return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).collect(Collectors.toList());
     }
 }
