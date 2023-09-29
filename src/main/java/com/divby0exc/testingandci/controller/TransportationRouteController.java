@@ -1,6 +1,7 @@
 package com.divby0exc.testingandci.controller;
 
 import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
+import com.divby0exc.testingandci.handlerexception.TransportationRoutesIsEmptyException;
 import com.divby0exc.testingandci.model.TransportationRoute;
 import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class TransportationRouteController {
 
     //    GET
     @GetMapping("get_routes")
-    public List<TransportationRoute> fetchPayments() {
+    public List<TransportationRoute> fetchPayments() throws TransportationRoutesIsEmptyException {
         return transportationRouteService.fetchAllRoutes();
     }
     //    PUT
