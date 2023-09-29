@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -47,6 +48,8 @@ class AccountTest {
         account.setContactInfo("dani@gmail.com");
 
         assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("Username cannot be null",
+                assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
     }
 
     @Test
@@ -58,6 +61,8 @@ class AccountTest {
         account.setUsername("");
 
         assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("Username cannot be empty",
+                assertThrows(InvalidUsernameInputException.class, () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
@@ -70,6 +75,8 @@ class AccountTest {
         account.setUsername("divby0exc");
 
         assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account));
+        assertEquals("Account type must either be 'USER', 'ADMIN' or 'PROVIDER'",
+                assertThrows(InvalidAuthTypeException.class, () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
     }
 
     @Test
