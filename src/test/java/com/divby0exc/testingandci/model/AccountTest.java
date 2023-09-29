@@ -14,6 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -256,10 +260,18 @@ class AccountTest {
         accountService.saveAccount(accountToTestFullIntegration);
         assertEquals("divby0exc", accountToTestFullIntegration.getUsername(), "Username of account I just saved was not divby0exc");
 
+        List<Account> accountList = new ArrayList<>(accountService.fetchAllAccounts());
+
+        assertEquals(1, accountList.size());
+
         Account retrievedAcc = accountService.fetchedAccount(1L).orElse(null);
         assertNotNull(retrievedAcc, "The retrieved account is null");
         retrievedAcc.setUsername("pookey");
         accountService.updateAccount(retrievedAcc);
+
+        accountList = new ArrayList<>(accountService.fetchAllAccounts());
+
+        assertEquals(1, accountList.size());
 
         Account retrievedAccAfterUsernameChange = accountService.fetchedAccount(1L).orElse(null);
         assertNotNull(retrievedAccAfterUsernameChange, "Retrieved acc after username change is null");
@@ -273,6 +285,10 @@ class AccountTest {
         assertNotNull(accountToTestFullIntegration);
 
         assertDoesNotThrow(() -> accountService.saveAccount(accountToTestFullIntegration));
+
+        List<Account> accountList = new ArrayList<>(accountService.fetchAllAccounts());
+
+        assertEquals(1, accountList.size());
 
         Account fetchedAccount = accountService.fetchedAccount(1L).orElse(null);
         assertNotNull(fetchedAccount);
