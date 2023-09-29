@@ -45,8 +45,6 @@ public class AccountService implements IAccountService {
             throw new InvalidPaymentInfoException("A valid mobile number that starts with +46 should be 11 digits");
         } else if (!newAccount.getContactInfo().contains("@")) {
             throw new InvalidContactInfo("A valid email address must contain an @ symbol");
-        } else if(newAccount.getId() == null) {
-            throw new InvalidAccountIdException("No id has been given");
         }
         return repository.save(newAccount);
     }
