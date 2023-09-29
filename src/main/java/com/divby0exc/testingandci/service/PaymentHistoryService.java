@@ -6,6 +6,7 @@ import com.divby0exc.testingandci.repository.IPaymentHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +25,12 @@ implements IPaymentHistoryService{
     @Override
     public PaymentsHistory createPayment(PaymentsHistory paymentsHistory) {
         return repository.save(paymentsHistory);
+    }
+
+    @Override
+    public List<PaymentsHistory> fetchPaymentList(Long accountId) throws InvalidPaymentIdException {
+        if(!repository.existsById(accountId))
+            throw new InvalidPaymentIdException("Payment history id not found");
+        return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).toList();
     }
 }

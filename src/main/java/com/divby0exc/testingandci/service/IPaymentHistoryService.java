@@ -3,6 +3,7 @@ package com.divby0exc.testingandci.service;
 import com.divby0exc.testingandci.handlerexception.InvalidPaymentIdException;
 import com.divby0exc.testingandci.model.PaymentsHistory;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IPaymentHistoryService {
@@ -10,6 +11,8 @@ public interface IPaymentHistoryService {
     Optional<PaymentsHistory> fetchPayment(Long accountId) throws InvalidPaymentIdException;
 
     PaymentsHistory createPayment(PaymentsHistory paymentsHistory);
+
+    List<PaymentsHistory> fetchPaymentList(Long accountId) throws InvalidPaymentIdException;
 
 
 }
