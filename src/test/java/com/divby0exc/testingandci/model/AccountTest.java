@@ -3,9 +3,16 @@ package com.divby0exc.testingandci.model;
 
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.InvalidUsernameInputException;
+import com.divby0exc.testingandci.repository.IAccountRepository;
+import com.divby0exc.testingandci.service.AccountService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -14,7 +21,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(classes = {TestingAndCiApplication.class})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@ExtendWith(MockitoExtension.class)
 class AccountTest {
+
+    @Mock
+    private IAccountRepository repo;
+    @InjectMocks
+    private AccountService accountServiceMockedRepo;
+
+    @Autowired
+    private AccountService accountService;
 
     @BeforeEach
     public void setup() {
