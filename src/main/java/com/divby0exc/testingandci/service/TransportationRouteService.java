@@ -1,6 +1,7 @@
 package com.divby0exc.testingandci.service;
 
 import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
+import com.divby0exc.testingandci.handlerexception.TransportationRoutesIsEmptyException;
 import com.divby0exc.testingandci.model.TransportationRoute;
 import com.divby0exc.testingandci.repository.ITransportationRouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ public class TransportationRouteService implements ITransportationRouteService {
     }
 
     @Override
-    public List<TransportationRoute> fetchAllRoutes() {
+    public List<TransportationRoute> fetchAllRoutes() throws TransportationRoutesIsEmptyException {
+        if(repository.findAll().isEmpty())
+            throw new TransportationRoutesIsEmptyException("Route list is empty");
         return repository.findAll();
     }
 

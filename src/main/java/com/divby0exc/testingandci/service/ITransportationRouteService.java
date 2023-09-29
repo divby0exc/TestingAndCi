@@ -1,6 +1,7 @@
 package com.divby0exc.testingandci.service;
 
 import com.divby0exc.testingandci.handlerexception.InvalidRouteIdException;
+import com.divby0exc.testingandci.handlerexception.TransportationRoutesIsEmptyException;
 import com.divby0exc.testingandci.model.TransportationRoute;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface ITransportationRouteService {
     TransportationRoute updateRouteDiscount(TransportationRoute transportationRoute) throws InvalidRouteIdException;
 
     /*Fetch a list of routes from all the contractors*/
-    List<TransportationRoute> fetchAllRoutes();
+    List<TransportationRoute> fetchAllRoutes() throws TransportationRoutesIsEmptyException;
 
     /*Create a new route*/
     TransportationRoute createNewRoute(TransportationRoute newRoute);
