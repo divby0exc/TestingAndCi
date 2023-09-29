@@ -25,6 +25,11 @@ class AccountTest {
     }
 
     @Test
+    public void testingIfContactInfoContainsAnAtSymbol() {
+
+    }
+
+    @Test
     public void testingIfPaymentInfoIsNotNull() {
 
     }
