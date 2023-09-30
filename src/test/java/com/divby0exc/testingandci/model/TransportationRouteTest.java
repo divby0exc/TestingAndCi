@@ -81,7 +81,20 @@ class TransportationRouteTest {
 
     @Test
     public void testSaveMehtodThatDeparturePointDoesThrowInvalidDeparturePointInputWhenEmpty() {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setTransportationCompany("SJ");
+        testRoute.setArrivalPoint("Stockholm");
+        testRoute.setDeparturePoint("");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setEstimatedArrival("09:15");
+        testRoute.setTicketPrice(100);
 
+        assertThrows(InvalidDeparturePointInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Departure point cannot be empty",
+                assertThrows(InvalidDeparturePointInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
     @Test
