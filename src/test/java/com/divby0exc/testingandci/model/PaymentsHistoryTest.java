@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {TestingAndCiApplication.class})
@@ -31,11 +34,21 @@ class PaymentsHistoryTest {
     private PaymentHistoryService paymentService;
 
     private PaymentsHistory paymentsHistory = new PaymentsHistory();
+    private PaymentsHistory paymentsHistory2 = new PaymentsHistory();
+    private PaymentsHistory paymentsHistory3 = new PaymentsHistory();
 
     @BeforeEach
     void init() {
         paymentsHistory.setRouteId(1L);
         paymentsHistory.setAccountId(1L);
+        paymentsHistory2.setRouteId(2L);
+        paymentsHistory2.setAccountId(1L);
+        paymentsHistory3.setRouteId(3L);
+        paymentsHistory3.setAccountId(1L);
+
+        paymentService.createPayment(paymentsHistory);
+        paymentService.createPayment(paymentsHistory2);
+        paymentService.createPayment(paymentsHistory3);
     }
 
     @Test
@@ -45,14 +58,15 @@ class PaymentsHistoryTest {
 
     @Test
     public void testThatNoExceptionIsThrownWhenPaymentIsFetched() throws InvalidPaymentIdException {
-        paymentService.createPayment(paymentsHistory);
-
         assertTrue(paymentService.fetchPayment(1L).isPresent());
     }
 
     @Test
     public void testThatNoExceptionIsThrownWhenPaymentListIsFetched() throws InvalidPaymentIdException {
+        List<PaymentsHistory> list = new ArrayList<>(paymentService.fetchPaymentList(1L));
 
+        assertDoesNotThrow(() -> paymentService.fetchPaymentList(1L));
+        assertEquals(3, list.size());
     }
 
 }
