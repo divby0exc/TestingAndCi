@@ -4,6 +4,7 @@ import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.InvalidPaymentIdException;
 import com.divby0exc.testingandci.repository.IPaymentHistoryRepository;
 import com.divby0exc.testingandci.service.PaymentHistoryService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,24 +30,29 @@ class PaymentsHistoryTest {
     @Autowired
     private PaymentHistoryService paymentService;
 
-    @Test
-    public void testThatNoExceptionsIsThrownWhenPaymentsHistoryIsCreated() {
-        PaymentsHistory paymentsHistory = new PaymentsHistory();
+    private PaymentsHistory paymentsHistory = new PaymentsHistory();
+
+    @BeforeEach
+    void init() {
         paymentsHistory.setRouteId(1L);
         paymentsHistory.setAccountId(1L);
+    }
 
+    @Test
+    public void testThatNoExceptionsIsThrownWhenPaymentsHistoryIsCreated() {
         assertDoesNotThrow(() -> mockedService.createPayment(paymentsHistory));
     }
 
     @Test
     public void testThatNoExceptionIsThrownWhenPaymentIsFetched() throws InvalidPaymentIdException {
-        PaymentsHistory paymentsHistory = new PaymentsHistory();
-        paymentsHistory.setRouteId(1L);
-        paymentsHistory.setAccountId(1L);
-
         paymentService.createPayment(paymentsHistory);
 
         assertTrue(paymentService.fetchPayment(1L).isPresent());
+    }
+
+    @Test
+    public void testThatNoExceptionIsThrownWhenPaymentListIsFetched() throws InvalidPaymentIdException {
+
     }
 
 }
