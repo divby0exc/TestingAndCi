@@ -3,6 +3,7 @@ package com.divby0exc.testingandci.model;
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.repository.ITransportationRouteRepository;
 import com.divby0exc.testingandci.service.TransportationRouteService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,6 +27,13 @@ class TransportationRouteTest {
 
     @Autowired
     TransportationRouteService routeService;
+
+    private TransportationRoute transportationRoute = new TransportationRoute();
+
+    @BeforeEach
+    void init() {
+
+    }
 
     @Test
     public void testThatUpdateRouteDoesNotThrowInvalidRouteId() {
