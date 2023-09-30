@@ -98,7 +98,7 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testSaveMehtodThatDeparturePointDoesThrowInvalidDeparturePointInputWhenNull() {
+    public void testSaveMethodThatDeparturePointDoesThrowInvalidDeparturePointInputWhenNull() {
         TransportationRoute testRoute = new TransportationRoute();
         testRoute.setRouteId(1L);
         testRoute.setTransportationCompany("SJ");
@@ -116,7 +116,20 @@ class TransportationRouteTest {
 
     @Test
     public void testSaveMethodThatArrivalPointDoesThrowInvalidArrivalPointInputWhenEmpty() {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setTransportationCompany("SJ");
+        testRoute.setArrivalPoint("");
+        testRoute.setDeparturePoint("Orebro");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setEstimatedArrival("09:15");
+        testRoute.setTicketPrice(100);
 
+        assertThrows(InvalidArrivalPointInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Arrival point cannot be empty",
+                assertThrows(InvalidArrivalPointInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
     @Test
