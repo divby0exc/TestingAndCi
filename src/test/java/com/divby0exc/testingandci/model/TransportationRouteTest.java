@@ -209,8 +209,14 @@ class TransportationRouteTest {
         testRoute.setArrivalPoint("Stockholm");
         testRoute.setDeparturePoint("Orebro");
         testRoute.setEstimatedDeparture("07:13");
-        testRoute.setEstimatedArrival("09:15");
+        testRoute.setEstimatedArrival("");
         testRoute.setTicketPrice(100);
+
+        assertThrows(InvalidEstimatedArrivalInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Estimated arrival cannot be empty",
+                assertThrows(InvalidEstimatedArrivalInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
 
     }
 
