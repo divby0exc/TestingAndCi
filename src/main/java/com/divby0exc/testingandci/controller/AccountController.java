@@ -4,6 +4,7 @@ import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.model.Account;
 import com.divby0exc.testingandci.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,10 @@ public class AccountController {
 
     //    POST
     @PostMapping("create_account")
-    public Account saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo, InvalidAccountIdException {
-        return accountService.saveAccount(account);
+    public ResponseEntity<Account> saveAccount(@RequestBody Account account) throws InvalidUsernameInputException, InvalidPaymentInfoException, InvalidAuthTypeException, InvalidContactInfo, InvalidAccountIdException {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(accountService.saveAccount(account));
     }
     //    GET
     @GetMapping("get_account/{id}")
