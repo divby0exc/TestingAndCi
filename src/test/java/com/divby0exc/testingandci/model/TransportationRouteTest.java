@@ -61,7 +61,11 @@ class TransportationRouteTest {
 
     @Test
     public void testThatFetchAllRoutesThrowRoutesIsEmptyWhenEmpty() {
-
+        assertThrows(TransportationRoutesIsEmptyException.class,
+                () -> routeServiceWithMockedRepo.fetchAllRoutes());
+        assertEquals("Route list is empty",
+                assertThrows(TransportationRoutesIsEmptyException.class,
+                        () -> routeServiceWithMockedRepo.fetchAllRoutes()).getMessage());
     }
 
     @Test
