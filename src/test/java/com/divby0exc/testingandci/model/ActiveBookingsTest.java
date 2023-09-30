@@ -88,7 +88,19 @@ class ActiveBookingsTest {
     }
 
     @Test
-    public void endToEndTest() {
+    public void testCreateBookingEndToEnd() {
+
+    }
+    @Test
+    public void testGetBookingEndToEnd() {
+
+    }
+    @Test
+    public void testGetBookingListEndToEnd() {
+
+    }
+    @Test
+    public void testDeleteBookingEndToEnd() {
 
     }
 
