@@ -363,7 +363,7 @@ class AccountTest {
     }
 
     @Test
-    public void testEndToEndDeleteAccountEndpoint() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
+    public void testEndToEndDeleteAccountEndpoint() throws Exception {
         accountService.saveAccount(new Account(
                 null,
                 "divby0exc",
@@ -371,7 +371,8 @@ class AccountTest {
                 "0761111111",
                 "USER"));
 
-
+        mockMvc.perform(delete("/account/delete_account/{id}", 1) )
+                .andExpect(status().isAccepted());
     }
 
     @Test
@@ -383,8 +384,7 @@ class AccountTest {
                 "0761111111",
                 "USER"));
 
-        mockMvc.perform(delete("/account/delete_account/{id}", 1) )
-                .andExpect(status().isAccepted());
+
     }
 
     /*

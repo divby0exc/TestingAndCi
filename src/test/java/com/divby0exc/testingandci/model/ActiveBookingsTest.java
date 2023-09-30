@@ -104,6 +104,15 @@ class ActiveBookingsTest {
     }
     @Test
     public void testGetBookingEndToEnd() {
+        activeBookingService.createNewBooking(
+                new ActiveBookings(
+                        null,
+                        1L,
+                        1L
+                )
+        );
+
+
 
     }
     @Test
