@@ -51,74 +51,75 @@ class TransportationRouteTest {
 
         TransportationRoute discountRoute = new TransportationRoute();
 
-        discountRoute.setRouteId(1L);
         discountRoute.setDiscountPrice(50);
+        assertThrows(InvalidRouteIdException.class,
+                () -> routeServiceWithMockedRepo.updateRouteDiscount(discountRoute));
 
 
     }
 
     @Test
-    public void testThatFetchAllRoutesDoesNotThrowRoutesIsEmpty() {
+    public void testThatFetchAllRoutesThrowRoutesIsEmptyWhenEmpty() {
 
     }
 
     @Test
-    public void testThatGetOneRouteDoesNotThrowInvalidRouteId() {
+    public void testThatGetOneRouteDoesThrowInvalidRouteIdWhenIdDoesNotExist() {
 
     }
 
     @Test
-    public void testSaveMehtodThatDeparturePointDoesNotThrowInvalidDeparturePointInputWhenEmpty() {
+    public void testSaveMehtodThatDeparturePointDoesThrowInvalidDeparturePointInputWhenEmpty() {
 
     }
 
     @Test
-    public void testSaveMehtodThatDeparturePointDoesNotThrowInvalidDeparturePointInputWhenNull() {
+    public void testSaveMehtodThatDeparturePointDoesThrowInvalidDeparturePointInputWhenNull() {
 
     }
 
     @Test
-    public void testSaveMethodThatArrivalPointDoesNotThrowInvalidArrivalPointInputWhenEmpty() {
+    public void testSaveMethodThatArrivalPointDoesThrowInvalidArrivalPointInputWhenEmpty() {
 
     }
 
     @Test
-    public void testSaveMethodThatArrivalPointDoesNotThrowInvalidArrivalPointInputWhenNull() {
+    public void testSaveMethodThatArrivalPointDoesThrowInvalidArrivalPointInputWhenNull() {
 
     }
 
     @Test
-    public void testThatTransportationCompanyDoesNotThrowInvalidTransportationCompanyInputWhenNull() {
+    public void testThatTransportationCompanyDoesThrowInvalidTransportationCompanyInputWhenNull() {
 
     }
 
     @Test
-    public void testThatTransportationCompanyDoesNotThrowInvalidTransportationCompanyInputWhenEmpty() {
+    public void testThatTransportationCompanyDoesThrowInvalidTransportationCompanyInputWhenEmpty() {
 
     }
 
     @Test
-    public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenNull() {
+    public void testThatEstimatedArrivalDoesThrowInvalidEstimatedArrivalInputWhenNull() {
 
     }
 
     @Test
-    public void testThatEstimatedArrivalDoesNotThrowInvalidEstimatedArrivalInputWhenEmpty() {
+    public void testThatEstimatedArrivalDoesThrowInvalidEstimatedArrivalInputWhenEmpty() {
 
     }
 
     @Test
-    public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenNull() {
+    public void testThatEstimatedDepartureDoesThrowInvalidEsitmatedDepartureInputWhenNull() {
 
     }
 
     @Test
-    public void testThatEstimatedDepartureDoesNotThrowInvalidEsitmatedDepartureInputWhenEmpty() {
+    public void testThatEstimatedDepartureDoesThrowInvalidEsitmatedDepartureInputWhenEmpty() {
 
     }
 
     @Test
-    public void testThatTicketPriceDoesNotThrowInvalidTicketPriceInputWhenValueIsLessOrEqualToZero() {
+    public void testThatTicketPriceDoesThrowInvalidTicketPriceInputWhenValueIsLessOrEqualToZero() {
 
     }
 
