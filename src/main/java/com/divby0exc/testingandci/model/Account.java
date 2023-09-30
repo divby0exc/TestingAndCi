@@ -15,6 +15,7 @@ import static jakarta.persistence.GenerationType.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Account {
     @Id
     @GeneratedValue(strategy = AUTO)

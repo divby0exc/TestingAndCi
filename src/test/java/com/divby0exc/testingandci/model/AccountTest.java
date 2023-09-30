@@ -323,8 +323,13 @@ class AccountTest {
     @Test
     public void testEndToEndCreateAccountEndpoint() throws Exception {
         mockMvc.perform(post("/account/create_account")
-                .content(asJsonString(
-                        new Account()))
+                .content(asJsonString(new Account(
+                        null,
+                        "divby0exc",
+                        "dani@gmail.com",
+                        "0761111111",
+                        "USER"))
+                )
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
