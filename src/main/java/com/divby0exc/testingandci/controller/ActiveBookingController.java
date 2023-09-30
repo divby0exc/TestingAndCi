@@ -21,7 +21,9 @@ public class ActiveBookingController {
     //    POST
     @PostMapping("create_booking")
     public ResponseEntity<ActiveBookings> saveBooking(@RequestBody ActiveBookings activeBookings) {
-        return activeBookingService.createNewBooking(activeBookings);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                        .body(activeBookingService.createNewBooking(activeBookings));
     }
     //    GET
     @GetMapping("get_booking/{accountId}")
