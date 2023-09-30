@@ -4,6 +4,7 @@ import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -319,5 +320,17 @@ class AccountTest {
     @Test
     public void endToEndTest() {
 
+    }
+
+    /*
+    Borrowed from:
+    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+    */
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

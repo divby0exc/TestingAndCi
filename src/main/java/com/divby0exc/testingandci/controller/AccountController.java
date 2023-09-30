@@ -34,9 +34,11 @@ public class AccountController {
     }
     //    PUT
     @PutMapping("update_account/{id}")
-    public Account updateAccount(@PathVariable Long id, @RequestBody Account account) throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidContactInfo, InvalidPaymentInfoException, InvalidAccountIdException {
+    public ResponseEntity<Account> updateAccount(@PathVariable Long id, @RequestBody Account account) throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidContactInfo, InvalidPaymentInfoException, InvalidAccountIdException {
         account.setId(id);
-        return accountService.saveAccount(account);
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(accountService.saveAccount(account));
     }
     //    Delete
     @DeleteMapping("delete_account/{id}")
