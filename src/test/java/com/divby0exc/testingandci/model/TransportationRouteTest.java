@@ -123,6 +123,29 @@ class TransportationRouteTest {
 
     }
 
+                    /*  Real integration test   */
+    @Test
+    public void testThatCreateNewRouteDoesNotThrowException() {
+
+    }
+
+    @Test
+    public void testThatUpdateRouteDoesNotThrowException() {
+
+    }
+
+    @Test
+    public void testThatFetchAllRoutesDoesNotThrowException() {
+
+    }
+
+    @Test
+    public void testThatGetOneRouteDoesNotThrowException() {
+
+    }
+
+        /*    End to End test     */
+
     @Test
     public void endToEndTest() {
 
