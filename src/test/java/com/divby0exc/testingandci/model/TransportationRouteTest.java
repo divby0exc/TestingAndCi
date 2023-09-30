@@ -227,10 +227,14 @@ class TransportationRouteTest {
         testRoute.setTransportationCompany("SJ");
         testRoute.setArrivalPoint("Stockholm");
         testRoute.setDeparturePoint("Orebro");
-        testRoute.setEstimatedDeparture("07:13");
         testRoute.setEstimatedArrival("09:15");
         testRoute.setTicketPrice(100);
 
+        assertThrows(InvalidEstimatedDepartureInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Estimated departure cannot be null",
+                assertThrows(InvalidEstimatedDepartureInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
     @Test
