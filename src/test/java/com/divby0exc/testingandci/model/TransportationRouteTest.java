@@ -317,8 +317,12 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testThatGetOneRouteDoesNotThrowException() {
+    public void testThatGetOneRouteDoesNotThrowException() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, InvalidRouteIdException {
+        routeService.createNewRoute(transportationRoute);
 
+        Optional<TransportationRoute> fetchedRoute = routeService.getOneRoute(1L);
+        assertDoesNotThrow(() -> routeService.getOneRoute(1L));
+        assertTrue(fetchedRoute.isPresent());
     }
 
         /*    End to End test     */
