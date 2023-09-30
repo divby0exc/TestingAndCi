@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -307,8 +308,12 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testThatFetchAllRoutesDoesNotThrowException() {
+    public void testThatFetchAllRoutesDoesNotThrowException() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, TransportationRoutesIsEmptyException {
+        routeService.createNewRoute(transportationRoute);
 
+        List<TransportationRoute> fetchedRoutes = routeService.fetchAllRoutes();
+        assertDoesNotThrow(() ->  routeService.fetchAllRoutes());
+        assertEquals(1, fetchedRoutes.size());
     }
 
     @Test
