@@ -15,6 +15,9 @@ import static jakarta.persistence.GenerationType.*;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ActiveBookings {
     @Id
     @GeneratedValue(strategy = AUTO)

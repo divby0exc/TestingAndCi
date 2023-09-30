@@ -10,6 +10,9 @@ import static jakarta.persistence.GenerationType.*;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TransportationRoute {
     @Id
     @GeneratedValue(strategy = AUTO)
