@@ -54,8 +54,9 @@ class TransportationRouteTest {
         discountRoute.setDiscountPrice(50);
         assertThrows(InvalidRouteIdException.class,
                 () -> routeServiceWithMockedRepo.updateRouteDiscount(discountRoute));
-
-
+        assertEquals("The given route ID was not found",
+                assertThrows(InvalidRouteIdException.class,
+                        () -> routeServiceWithMockedRepo.updateRouteDiscount(testRoute)).getMessage());
     }
 
     @Test
