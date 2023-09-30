@@ -318,7 +318,22 @@ class AccountTest {
                     /*  End to End test     */
 
     @Test
-    public void endToEndTest() {
+    public void testEndToEndCreateAccountEndpoint() {
+
+    }
+
+    @Test
+    public void testEndToEndUpdateAccountEndpoint() {
+
+    }
+
+    @Test
+    public void testEndToEndDeleteAccountEndpoint() {
+
+    }
+
+    @Test
+    public void testEndToEndGetAccountEndpoint() {
 
     }
 
