@@ -42,7 +42,11 @@ public class AccountController {
     }
     //    Delete
     @DeleteMapping("delete_account/{id}")
-    public void deleteAccount(@PathVariable Long id) throws InvalidAccountIdException {
+    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable Long id) throws InvalidAccountIdException {
         accountService.deleteAccount(id);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .build();
     }
 }

@@ -23,8 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -364,13 +363,28 @@ class AccountTest {
     }
 
     @Test
-    public void testEndToEndDeleteAccountEndpoint() {
+    public void testEndToEndDeleteAccountEndpoint() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
+        accountService.saveAccount(new Account(
+                null,
+                "divby0exc",
+                "dani@gmail.com",
+                "0761111111",
+                "USER"));
+
 
     }
 
     @Test
-    public void testEndToEndGetAccountEndpoint() {
+    public void testEndToEndGetAccountEndpoint() throws Exception {
+        accountService.saveAccount(new Account(
+                null,
+                "divby0exc",
+                "dani@gmail.com",
+                "0761111111",
+                "USER"));
 
+        mockMvc.perform(delete("/account/delete_account/{id}", 1) )
+                .andExpect(status().isAccepted());
     }
 
     /*
