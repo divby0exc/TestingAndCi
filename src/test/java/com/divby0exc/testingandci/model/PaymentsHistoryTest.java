@@ -46,7 +46,7 @@ class PaymentsHistoryTest {
 
         paymentService.createPayment(paymentsHistory);
 
-        assertTrue(mockedService.fetchPayment(1L).isPresent());
+        assertTrue(paymentService.fetchPayment(1L).isPresent());
     }
 
 }
