@@ -28,7 +28,9 @@ public class ActiveBookingController {
     //    GET
     @GetMapping("get_booking/{accountId}")
     public ResponseEntity<Optional<ActiveBookings>> fetchActiveBooking(@PathVariable Long accountId) throws InvalidBookingIdException {
-        return activeBookingService.fetchOneBooking(accountId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                        .body(activeBookingService.fetchOneBooking(accountId));
     }
     //    GET
     @GetMapping("get_booking_list/{accountId}")
