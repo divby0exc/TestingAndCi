@@ -151,7 +151,19 @@ class TransportationRouteTest {
 
     @Test
     public void testThatTransportationCompanyDoesThrowInvalidTransportationCompanyInputWhenNull() {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setArrivalPoint("Stockholm");
+        testRoute.setDeparturePoint("Orebro");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setEstimatedArrival("09:15");
+        testRoute.setTicketPrice(100);
 
+        assertThrows(InvalidTransportationCompanyInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Transportation company cannot be null",
+                assertThrows(InvalidTransportationCompanyInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
     @Test
