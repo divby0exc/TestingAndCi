@@ -2,6 +2,7 @@ package com.divby0exc.testingandci.controller;
 
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.repository.ITransportationRouteRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,5 +25,17 @@ class TicketBookingControllerTest {
     MockMvc mockMvc;
     @Test
     void buyATicket() {
+    }
+
+    /*
+    Borrowed from:
+    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+    */
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
