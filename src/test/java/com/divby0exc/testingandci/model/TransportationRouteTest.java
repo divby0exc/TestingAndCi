@@ -1,6 +1,7 @@
 package com.divby0exc.testingandci.model;
 
 import com.divby0exc.testingandci.TestingAndCiApplication;
+import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.repository.ITransportationRouteRepository;
 import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,23 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testThatUpdateRouteDoesNotThrowInvalidRouteId() {
+    public void testThatUpdateRouteThrowInvalidRouteIdWhenMissing() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, InvalidRouteIdException {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setTransportationCompany("SJ");
+        testRoute.setArrivalPoint("Stockholm");
+        testRoute.setDeparturePoint("Orebro");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setEstimatedArrival("09:15");
+        testRoute.setTicketPrice(100);
+
+        routeServiceWithMockedRepo.createNewRoute(testRoute);
+
+        TransportationRoute discountRoute = new TransportationRoute();
+
+        discountRoute.setRouteId(1L);
+        discountRoute.setDiscountPrice(50);
+
 
     }
 
