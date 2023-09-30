@@ -15,7 +15,8 @@ import static jakarta.persistence.GenerationType.*;
 @Data
 public class PaymentsHistory {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = AUTO)
+    private Long paymentId;
     private Long accountId;
-    private long routeId;
+    private Long routeId;
 }
