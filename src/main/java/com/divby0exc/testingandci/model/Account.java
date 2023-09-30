@@ -13,6 +13,8 @@ import static jakarta.persistence.GenerationType.*;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = AUTO)
