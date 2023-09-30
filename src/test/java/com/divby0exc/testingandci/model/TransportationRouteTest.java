@@ -168,7 +168,20 @@ class TransportationRouteTest {
 
     @Test
     public void testThatTransportationCompanyDoesThrowInvalidTransportationCompanyInputWhenEmpty() {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setTransportationCompany("");
+        testRoute.setArrivalPoint("Stockholm");
+        testRoute.setDeparturePoint("Orebro");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setEstimatedArrival("09:15");
+        testRoute.setTicketPrice(100);
 
+        assertThrows(InvalidTransportationCompanyInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Transportation company cannot be empty",
+                assertThrows(InvalidTransportationCompanyInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
     @Test
