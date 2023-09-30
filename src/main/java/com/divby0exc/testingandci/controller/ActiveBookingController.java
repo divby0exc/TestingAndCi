@@ -35,7 +35,9 @@ public class ActiveBookingController {
     //    GET
     @GetMapping("get_booking_list/{accountId}")
     public ResponseEntity<List<ActiveBookings>> fetchActiveBookingList(@PathVariable Long accountId) throws InvalidBookingIdException {
-        return activeBookingService.fetchActiveBookingList(accountId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                        .body(activeBookingService.fetchActiveBookingList(accountId));
     }
     //    Delete
     @DeleteMapping("delete_booking/{accountId}")
