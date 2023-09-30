@@ -35,7 +35,13 @@ class TransportationRouteTest {
 
     @BeforeEach
     void init() {
-
+        transportationRoute.setRouteId(1L);
+        transportationRoute.setTransportationCompany("SJ");
+        transportationRoute.setArrivalPoint("Stockholm");
+        transportationRoute.setDeparturePoint("Orebro");
+        transportationRoute.setEstimatedDeparture("07:13");
+        transportationRoute.setEstimatedArrival("09:15");
+        transportationRoute.setTicketPrice(100);
     }
 
     @Test
@@ -283,22 +289,21 @@ class TransportationRouteTest {
 
                     /*  Real integration test   */
     @Test
-    public void testThatCreateNewRouteDoesNotThrowException() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
-        TransportationRoute testRoute = new TransportationRoute();
-        testRoute.setRouteId(1L);
-        testRoute.setTransportationCompany("SJ");
-        testRoute.setArrivalPoint("Stockholm");
-        testRoute.setDeparturePoint("Orebro");
-        testRoute.setEstimatedDeparture("07:13");
-        testRoute.setEstimatedArrival("09:15");
-        testRoute.setTicketPrice(100);
-
-        assertDoesNotThrow(() -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+    public void testThatCreateNewRouteDoesNotThrowException() {
+        assertDoesNotThrow(() -> routeService.createNewRoute(transportationRoute));
     }
 
     @Test
-    public void testThatUpdateRouteDoesNotThrowException() {
+    public void testThatUpdateRouteDoesNotThrowException() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, InvalidRouteIdException {
+        routeService.createNewRoute(transportationRoute);
 
+        TransportationRoute fetchedRoute = routeService.getOneRoute(1L).orElse(null);
+
+        assertNotNull(fetchedRoute);
+
+        fetchedRoute.setTicketPrice(300);
+
+        assertDoesNotThrow(() -> routeService.updateRouteDiscount(fetchedRoute));
     }
 
     @Test
