@@ -186,8 +186,20 @@ class TransportationRouteTest {
 
     @Test
     public void testThatEstimatedArrivalDoesThrowInvalidEstimatedArrivalInputWhenNull() {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setTransportationCompany("SJ");
+        testRoute.setArrivalPoint("Stockholm");
+        testRoute.setDeparturePoint("Orebro");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setTicketPrice(100);
 
-    }
+        assertThrows(InvalidEstimatedArrivalInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Estimated arrival cannot be null",
+                assertThrows(InvalidEstimatedArrivalInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
+   }
 
     @Test
     public void testThatEstimatedArrivalDoesThrowInvalidEstimatedArrivalInputWhenEmpty() {
