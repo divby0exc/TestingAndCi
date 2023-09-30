@@ -24,6 +24,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -335,8 +337,30 @@ class AccountTest {
     }
 
     @Test
-    public void testEndToEndUpdateAccountEndpoint() {
+    public void testEndToEndUpdateAccountEndpoint() throws Exception {
+        accountService.saveAccount(new Account(
+                null,
+                "divby0exc",
+                "dani@gmail.com",
+                "0761111111",
+                "USER"));
 
+        mockMvc.perform(put("/account/update_account/{id}", 1L)
+                        .content(asJsonString(new Account(
+                                1L,
+                                "pookey",
+                                "dani@gmail.com",
+                                "+46761111111",
+                                "ADMIN")))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isAccepted())
+                .andExpect(jsonPath("$.username")
+                        .value("pookey"))
+                .andExpect(jsonPath("$.paymentInfo")
+                        .value("+46761111111"))
+                .andExpect(jsonPath("$.accountType")
+                        .value("ADMIN"));
     }
 
     @Test
