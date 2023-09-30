@@ -283,8 +283,17 @@ class TransportationRouteTest {
 
                     /*  Real integration test   */
     @Test
-    public void testThatCreateNewRouteDoesNotThrowException() {
+    public void testThatCreateNewRouteDoesNotThrowException() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
+        TransportationRoute testRoute = new TransportationRoute();
+        testRoute.setRouteId(1L);
+        testRoute.setTransportationCompany("SJ");
+        testRoute.setArrivalPoint("Stockholm");
+        testRoute.setDeparturePoint("Orebro");
+        testRoute.setEstimatedDeparture("07:13");
+        testRoute.setEstimatedArrival("09:15");
+        testRoute.setTicketPrice(100);
 
+        assertDoesNotThrow(() -> routeServiceWithMockedRepo.createNewRoute(testRoute));
     }
 
     @Test
