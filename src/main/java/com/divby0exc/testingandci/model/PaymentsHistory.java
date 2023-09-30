@@ -13,9 +13,6 @@ import static jakarta.persistence.GenerationType.*;
 
 @Entity
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class PaymentsHistory {
     @Id
     @GeneratedValue(strategy = IDENTITY)
