@@ -43,5 +43,9 @@ public class ActiveBookingController {
     @DeleteMapping("delete_booking/{accountId}")
     public ResponseEntity<HttpStatus> deleteBooking(@PathVariable Long accountId) throws InvalidBookingIdException {
         activeBookingService.deleteBooking(accountId);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                        .build();
     }
 }
