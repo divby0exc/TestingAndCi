@@ -264,8 +264,21 @@ class TransportationRouteTest {
         testRoute.setDeparturePoint("Orebro");
         testRoute.setEstimatedDeparture("07:13");
         testRoute.setEstimatedArrival("09:15");
-        testRoute.setTicketPrice(100);
+        testRoute.setTicketPrice(0);
 
+        assertThrows(InvalidTicketPriceInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Ticket price needs to have an actual price that you can pay",
+                assertThrows(InvalidTicketPriceInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
+
+        testRoute.setTicketPrice(-100);
+
+        assertThrows(InvalidTicketPriceInputException.class,
+                () -> routeServiceWithMockedRepo.createNewRoute(testRoute));
+        assertEquals("Ticket price needs to have an actual price that you can pay",
+                assertThrows(InvalidTicketPriceInputException.class,
+                        () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
                     /*  Real integration test   */
