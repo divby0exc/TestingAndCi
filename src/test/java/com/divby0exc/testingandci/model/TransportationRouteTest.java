@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {TestingAndCiApplication.class})
@@ -69,8 +71,12 @@ class TransportationRouteTest {
     }
 
     @Test
-    public void testThatGetOneRouteDoesThrowInvalidRouteIdWhenIdDoesNotExist() {
-
+    public void testThatGetOneRouteDoesThrowInvalidRouteIdWhenIdDoesNotExist() throws InvalidRouteIdException {
+        assertThrows(InvalidRouteIdException.class,
+                () -> routeServiceWithMockedRepo.getOneRoute(1L));
+        assertEquals("The given route ID was not found",
+                assertThrows(InvalidRouteIdException.class,
+                        () -> routeServiceWithMockedRepo.getOneRoute(1L)).getMessage());
     }
 
     @Test
