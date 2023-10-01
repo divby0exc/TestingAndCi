@@ -4,6 +4,8 @@ import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.model.TransportationRoute;
 import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,10 @@ public class TransportationRouteController {
 
     //    POST
     @PostMapping("create_route")
-    public TransportationRoute createRoute(@RequestBody TransportationRoute transportationRoute) throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
-        return transportationRouteService.createNewRoute(transportationRoute);
+    public ResponseEntity<TransportationRoute> createRoute(@RequestBody TransportationRoute transportationRoute) throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(transportationRouteService.createNewRoute(transportationRoute));
     }
 
     //    GET
