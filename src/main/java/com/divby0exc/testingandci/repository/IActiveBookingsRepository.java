@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IActiveBookingsRepository extends JpaRepository<ActiveBookings, Long> {
+    boolean existsByAccountId(Long accountId);
 }

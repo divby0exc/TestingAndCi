@@ -19,7 +19,7 @@ implements IActiveBookingService{
 
     @Override
     public List<ActiveBookings> fetchActiveBookingList(Long accountId) throws InvalidBookingIdException {
-        if(!repository.existsById(accountId))
+        if(!repository.existsByAccountId(accountId))
             throw new InvalidBookingIdException("Booking id not found");
         return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).collect(Collectors.toList());
     }
@@ -47,4 +47,5 @@ implements IActiveBookingService{
             throw new InvalidBookingIdException("Booking id not found");
         return repository.findById(bookingId);
     }
+
 }

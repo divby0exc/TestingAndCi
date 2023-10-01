@@ -132,12 +132,12 @@ class ActiveBookingsTest {
     public void testDeleteBookingEndToEnd() throws Exception {
         assertEquals(3, activeBookingService.fetchActiveBookingList(2L).size());
 
-        mockMvc.perform(delete("/activebooking/delete_booking/{bookingId}", 2L)
+        mockMvc.perform(delete("/activebooking/delete_booking/{bookingId}", 2)
                        .accept(MediaType.APPLICATION_JSON))
                .andDo(print())
                .andExpect(status().isAccepted());
 
-        assertNull(activeBookingService.fetchActiveBookingList(2L));
+        assertEquals(2, activeBookingService.fetchActiveBookingList(2L).size());
     }
 
     /*
