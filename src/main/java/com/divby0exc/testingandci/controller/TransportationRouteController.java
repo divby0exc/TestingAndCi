@@ -33,8 +33,10 @@ public class TransportationRouteController {
     }
     //    PUT
     @PutMapping("update_departure/{routeId}")
-    public TransportationRoute updateDeparture(@PathVariable Long routeId, @RequestBody TransportationRoute transportationRoute) throws InvalidRouteIdException, InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
+    public ResponseEntity<TransportationRoute> updateDeparture(@PathVariable Long routeId, @RequestBody TransportationRoute transportationRoute) throws InvalidRouteIdException, InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
         transportationRoute.setRouteId(routeId);
-        return transportationRouteService.updateRouteDiscount(transportationRoute);
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(transportationRouteService.updateRouteDiscount(transportationRoute));
     }
 }
