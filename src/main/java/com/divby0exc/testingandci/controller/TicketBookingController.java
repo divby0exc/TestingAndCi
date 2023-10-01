@@ -14,8 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/book_a_ticket/")
 public class TicketBookingController {
@@ -29,7 +27,7 @@ public class TicketBookingController {
     AccountService accountService;
 
     @PostMapping("{accountId}/{routeId}")
-    public ResponseEntity<Optional<TransportationRoute>> buyATicket(@PathVariable Long routeId, @PathVariable Long accountId) throws InvalidRouteIdException, InvalidAccountIdException {
+    public ResponseEntity<String> buyATicket(@PathVariable Long routeId, @PathVariable Long accountId) throws InvalidRouteIdException, InvalidAccountIdException {
         ActiveBookings activeBookings = new ActiveBookings();
         PaymentsHistory paymentsHistory = new PaymentsHistory();
         if(accountService.fetchedAccount(accountId).isPresent()) {
@@ -42,9 +40,13 @@ public class TicketBookingController {
         }
         activeBookingService.createNewBooking(activeBookings);
         paymentHistoryService.createPayment(paymentsHistory);
+
+        TransportationRoute thatRoute = transportationRouteService.getOneRoute(routeId).orElse(null);
+        assert thatRoute != null;
+        String response = "Thank you for buying a ticket for route " + thatRoute.getDeparturePoint() + " to " + thatRoute.getArrivalPoint();
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(transportationRouteService.getOneRoute(routeId));
+                .body(response);
     }
 
 
