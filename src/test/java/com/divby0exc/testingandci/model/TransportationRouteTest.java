@@ -24,6 +24,7 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,6 +47,7 @@ class TransportationRouteTest {
 
     private TransportationRoute transportationRoute = new TransportationRoute();
     private TransportationRoute transportationRoute2 = new TransportationRoute();
+    private TransportationRoute transportationRoute3 = new TransportationRoute();
 
     @BeforeEach
     void init() {
@@ -63,6 +65,8 @@ class TransportationRouteTest {
         transportationRoute2.setEstimatedDeparture("07:13");
         transportationRoute2.setEstimatedArrival("10:15");
         transportationRoute2.setTicketPrice(150);
+
+
     }
 
     @Test
@@ -352,7 +356,20 @@ class TransportationRouteTest {
 
     }
     @Test
-    public void testUpdateDepartureEndToEnd() {
+    public void testUpdateDepartureEndToEnd() throws Exception {
+        routeService.createNewRoute(transportationRoute);
+        TransportationRoute testRoute = routeService.getOneRoute(1L).orElse(null);
+        assertNotNull(testRoute);
+        testRoute.setEstimatedDeparture("09:23");
+
+        mockMvc.perform(put("/transportation/update_departure/{routeId}", 1L)
+                        .content(asJsonString(
+                                testRoute
+                        ))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isAccepted())
+                .andExpect(jsonPath("$.estimatedDeparture", is("09:23")));
 
     }
     @Test
