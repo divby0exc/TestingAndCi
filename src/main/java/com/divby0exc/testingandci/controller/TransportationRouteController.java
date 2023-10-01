@@ -26,8 +26,10 @@ public class TransportationRouteController {
 
     //    GET
     @GetMapping("get_routes")
-    public List<TransportationRoute> fetchPayments() throws TransportationRoutesIsEmptyException {
-        return transportationRouteService.fetchAllRoutes();
+    public ResponseEntity<List<TransportationRoute>> fetchPayments() throws TransportationRoutesIsEmptyException {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(transportationRouteService.fetchAllRoutes());
     }
     //    PUT
     @PutMapping("update_departure/{routeId}")
