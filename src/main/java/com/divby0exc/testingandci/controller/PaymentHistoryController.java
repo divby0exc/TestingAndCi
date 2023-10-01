@@ -19,6 +19,7 @@ public class PaymentHistoryController {
     public PaymentsHistory savePayment(@RequestBody PaymentsHistory paymentsHistory) {
         return paymentHistoryService.createPayment(paymentsHistory);
     }
+
     //    GET
     @GetMapping("get_payment/{accountId}")
     public Optional<PaymentsHistory> fetchActiveBooking(@PathVariable Long accountId) throws InvalidPaymentIdException {

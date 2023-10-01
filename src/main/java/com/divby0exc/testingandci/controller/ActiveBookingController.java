@@ -23,22 +23,25 @@ public class ActiveBookingController {
     public ResponseEntity<ActiveBookings> saveBooking(@RequestBody ActiveBookings activeBookings) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                        .body(activeBookingService.createNewBooking(activeBookings));
+                .body(activeBookingService.createNewBooking(activeBookings));
     }
+
     //    GET
     @GetMapping("get_booking/{bookingId}")
     public ResponseEntity<Optional<ActiveBookings>> fetchActiveBooking(@PathVariable Long bookingId) throws InvalidBookingIdException {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                        .body(activeBookingService.fetchOneBooking(bookingId));
+                .body(activeBookingService.fetchOneBooking(bookingId));
     }
+
     //    GET
     @GetMapping("get_booking_list/{accountId}")
     public ResponseEntity<List<ActiveBookings>> fetchActiveBookingList(@PathVariable Long accountId) throws InvalidBookingIdException {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                        .body(activeBookingService.fetchActiveBookingList(accountId));
+                .body(activeBookingService.fetchActiveBookingList(accountId));
     }
+
     //    Delete
     @DeleteMapping("delete_booking/{bookingId}")
     public ResponseEntity<HttpStatus> deleteBooking(@PathVariable Long bookingId) throws InvalidBookingIdException {
@@ -46,6 +49,6 @@ public class ActiveBookingController {
 
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                        .build();
+                .build();
     }
 }

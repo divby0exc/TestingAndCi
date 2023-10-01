@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class PaymentHistoryService
-implements IPaymentHistoryService{
+        implements IPaymentHistoryService {
     @Autowired
     IPaymentHistoryRepository repository;
 
     @Override
     public Optional<PaymentsHistory> fetchPayment(Long accountId) throws InvalidPaymentIdException {
-        if(!repository.existsById(accountId))
+        if (!repository.existsById(accountId))
             throw new InvalidPaymentIdException("No payment id found");
         return repository.findById(accountId);
     }
@@ -30,7 +30,7 @@ implements IPaymentHistoryService{
 
     @Override
     public List<PaymentsHistory> fetchPaymentList(Long accountId) throws InvalidPaymentIdException {
-        if(!repository.existsById(accountId))
+        if (!repository.existsById(accountId))
             throw new InvalidPaymentIdException("Payment history id not found");
         return repository.findAll().stream().filter(e -> e.getAccountId().equals(accountId)).collect(Collectors.toList());
     }

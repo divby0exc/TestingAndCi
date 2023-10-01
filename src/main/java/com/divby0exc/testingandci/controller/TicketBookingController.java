@@ -12,7 +12,10 @@ import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/book_a_ticket/")
@@ -30,11 +33,11 @@ public class TicketBookingController {
     public ResponseEntity<String> buyATicket(@PathVariable Long routeId, @PathVariable Long accountId) throws InvalidRouteIdException, InvalidAccountIdException {
         ActiveBookings activeBookings = new ActiveBookings();
         PaymentsHistory paymentsHistory = new PaymentsHistory();
-        if(accountService.fetchedAccount(accountId).isPresent()) {
+        if (accountService.fetchedAccount(accountId).isPresent()) {
             activeBookings.setAccountId(accountId);
             paymentsHistory.setAccountId(accountId);
         }
-        if(transportationRouteService.getOneRoute(routeId).isPresent()) {
+        if (transportationRouteService.getOneRoute(routeId).isPresent()) {
             activeBookings.setRouteId(routeId);
             paymentsHistory.setRouteId(routeId);
         }

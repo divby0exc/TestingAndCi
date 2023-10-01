@@ -5,7 +5,6 @@ import com.divby0exc.testingandci.model.Account;
 import com.divby0exc.testingandci.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +24,15 @@ public class AccountController {
                 .status(HttpStatus.CREATED)
                 .body(accountService.saveAccount(account));
     }
+
     //    GET
     @GetMapping("get_account/{id}")
     public ResponseEntity<Optional<Account>> fetchAccount(@PathVariable Long id) throws InvalidAccountIdException {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                        .body(accountService.fetchedAccount(id));
+                .body(accountService.fetchedAccount(id));
     }
+
     //    PUT
     @PutMapping("update_account/{id}")
     public ResponseEntity<Account> updateAccount(@PathVariable Long id, @RequestBody Account account) throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidContactInfo, InvalidPaymentInfoException, InvalidAccountIdException {
@@ -40,6 +41,7 @@ public class AccountController {
                 .status(HttpStatus.ACCEPTED)
                 .body(accountService.saveAccount(account));
     }
+
     //    Delete
     @DeleteMapping("delete_account/{id}")
     public ResponseEntity<HttpStatus> deleteAccount(@PathVariable Long id) throws InvalidAccountIdException {

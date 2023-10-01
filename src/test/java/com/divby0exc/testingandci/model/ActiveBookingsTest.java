@@ -3,7 +3,6 @@ package com.divby0exc.testingandci.model;
 import com.divby0exc.testingandci.TestingAndCiApplication;
 import com.divby0exc.testingandci.handlerexception.InvalidBookingIdException;
 import com.divby0exc.testingandci.repository.IActiveBookingsRepository;
-import com.divby0exc.testingandci.service.AccountService;
 import com.divby0exc.testingandci.service.ActiveBookingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +49,18 @@ class ActiveBookingsTest {
     private ActiveBookings activeBookings = new ActiveBookings();
     private ActiveBookings activeBookings2 = new ActiveBookings();
     private ActiveBookings activeBookings3 = new ActiveBookings();
+
+    /*
+    Borrowed from:
+    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+    */
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @BeforeEach
     void init() {
@@ -98,14 +108,15 @@ class ActiveBookingsTest {
     public void testCreateBookingEndToEnd() throws Exception {
         mockMvc.perform(post("/activebooking/create_booking")
                         .content(asJsonString(new ActiveBookings(
-                                null,
-                                1L,
-                                1L
+                                        null,
+                                        1L,
+                                        1L
                                 ))
                         )
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
+
     @Test
     public void testGetBookingEndToEnd() throws Exception {
         mockMvc.perform(get("/activebooking/get_booking/{accountId}"
@@ -117,6 +128,7 @@ class ActiveBookingsTest {
                         .value(1L));
 
     }
+
     @Test
     public void testGetBookingListEndToEnd() throws Exception {
         mockMvc.perform(get("/activebooking/get_booking_list/{accountId}", 2L)
@@ -124,32 +136,21 @@ class ActiveBookingsTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*].accountId", hasItems(2)))
-                .andExpect(jsonPath("$[*].bookingId", hasItems(1,2,3)))
-                .andExpect(jsonPath("$[*].routeId", hasItems(1,2,3)));
+                .andExpect(jsonPath("$[*].bookingId", hasItems(1, 2, 3)))
+                .andExpect(jsonPath("$[*].routeId", hasItems(1, 2, 3)));
 
     }
+
     @Test
     public void testDeleteBookingEndToEnd() throws Exception {
         assertEquals(3, activeBookingService.fetchActiveBookingList(2L).size());
 
         mockMvc.perform(delete("/activebooking/delete_booking/{bookingId}", 2)
-                       .accept(MediaType.APPLICATION_JSON))
-               .andDo(print())
-               .andExpect(status().isAccepted());
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isAccepted());
 
         assertEquals(2, activeBookingService.fetchActiveBookingList(2L).size());
-    }
-
-    /*
-    Borrowed from:
-    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
-    */
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

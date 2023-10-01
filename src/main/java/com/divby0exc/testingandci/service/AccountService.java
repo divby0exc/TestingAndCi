@@ -25,17 +25,17 @@ public class AccountService implements IAccountService {
             throw new InvalidUsernameInputException("Username cannot be empty");
         } else if (newAccount.getContactInfo() == null) {
             throw new InvalidContactInfo("Contact info cannot be null");
-        } else if(newAccount.getContactInfo().isEmpty()) {
+        } else if (newAccount.getContactInfo().isEmpty()) {
             throw new InvalidContactInfo("Contact info cannot be empty");
         } else if (newAccount.getPaymentInfo() == null) {
             throw new InvalidPaymentInfoException("Payment info cannot be null");
-        } else if(newAccount.getPaymentInfo().isEmpty()) {
+        } else if (newAccount.getPaymentInfo().isEmpty()) {
             throw new InvalidPaymentInfoException("Payment info cannot be empty");
         } else if (newAccount.getAccountType() == null) {
             throw new InvalidAuthTypeException("Account type cannot be null");
-        } else if(newAccount.getAccountType().isEmpty()) {
+        } else if (newAccount.getAccountType().isEmpty()) {
             throw new InvalidAuthTypeException("Account type cannot be empty");
-        } else if(!(newAccount.getAccountType().equalsIgnoreCase("USER")) &&
+        } else if (!(newAccount.getAccountType().equalsIgnoreCase("USER")) &&
                 !(newAccount.getAccountType().equalsIgnoreCase("ADMIN")) &&
                 !(newAccount.getAccountType().equalsIgnoreCase("PROVIDER"))) {
             throw new InvalidAuthTypeException("Account type must either be 'USER', 'ADMIN' or 'PROVIDER'");

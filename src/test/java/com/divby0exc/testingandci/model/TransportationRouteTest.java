@@ -21,7 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -47,6 +48,18 @@ class TransportationRouteTest {
     private TransportationRoute transportationRoute = new TransportationRoute();
     private TransportationRoute transportationRoute2 = new TransportationRoute();
     private TransportationRoute transportationRoute3 = new TransportationRoute();
+
+    /*
+    Borrowed from:
+    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+    */
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @BeforeEach
     void init() {
@@ -229,7 +242,7 @@ class TransportationRouteTest {
         assertEquals("Estimated arrival cannot be null",
                 assertThrows(InvalidEstimatedArrivalInputException.class,
                         () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
-   }
+    }
 
     @Test
     public void testThatEstimatedArrivalDoesThrowInvalidEstimatedArrivalInputWhenEmpty() {
@@ -311,7 +324,7 @@ class TransportationRouteTest {
                         () -> routeServiceWithMockedRepo.createNewRoute(testRoute)).getMessage());
     }
 
-                    /*  Real integration test   */
+    /*  Real integration test   */
     @Test
     public void testThatCreateNewRouteDoesNotThrowException() {
         assertDoesNotThrow(() -> routeService.createNewRoute(transportationRoute));
@@ -335,9 +348,11 @@ class TransportationRouteTest {
         routeService.createNewRoute(transportationRoute);
 
         List<TransportationRoute> fetchedRoutes = routeService.fetchAllRoutes();
-        assertDoesNotThrow(() ->  routeService.fetchAllRoutes());
+        assertDoesNotThrow(() -> routeService.fetchAllRoutes());
         assertEquals(1, fetchedRoutes.size());
     }
+
+    /*    End to End test     */
 
     @Test
     public void testThatGetOneRouteDoesNotThrowException() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, InvalidRouteIdException {
@@ -348,8 +363,6 @@ class TransportationRouteTest {
         assertTrue(fetchedRoute.isPresent());
     }
 
-        /*    End to End test     */
-
     @Test
     public void testCreateRouteEndToEnd() throws Exception {
 
@@ -358,6 +371,7 @@ class TransportationRouteTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
+
     @Test
     public void testUpdateDepartureEndToEnd() throws Exception {
         routeService.createNewRoute(transportationRoute);
@@ -375,6 +389,7 @@ class TransportationRouteTest {
                 .andExpect(jsonPath("$.estimatedDeparture", is("09:23")));
 
     }
+
     @Test
     public void testGetRoutesEndToEnd() throws Exception {
         routeService.createNewRoute(transportationRoute);
@@ -386,19 +401,6 @@ class TransportationRouteTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*].routeId", hasSize(2)));
     }
-
-    /*
-    Borrowed from:
-    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
-    */
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
 
 }

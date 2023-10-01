@@ -5,7 +5,6 @@ import com.divby0exc.testingandci.handlerexception.*;
 import com.divby0exc.testingandci.repository.IAccountRepository;
 import com.divby0exc.testingandci.service.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -47,6 +46,18 @@ class AccountTest {
     private MockMvc mockMvc;
 
     private Account accountToTestFullIntegration = new Account();
+
+    /*
+    Borrowed from:
+    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+    */
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @BeforeEach
     void init() {
@@ -158,7 +169,7 @@ class AccountTest {
                 () -> accountServiceMockedRepo.saveAccount(account));
         assertEquals("Payment info cannot be null",
                 assertThrows(InvalidPaymentInfoException.class,
-                () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
     }
 
     @Test
@@ -188,7 +199,7 @@ class AccountTest {
                 () -> accountServiceMockedRepo.saveAccount(account));
         assertEquals("Account type cannot be null",
                 assertThrows(InvalidAuthTypeException.class,
-                () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
+                        () -> accountServiceMockedRepo.saveAccount(account)).getMessage());
 
     }
 
@@ -258,7 +269,7 @@ class AccountTest {
 
     }
 
-                /*  Real integration test   */
+    /*  Real integration test   */
     @Test
     public void testSaveMethodToDatabaseThatNoExceptionIsThrown() {
         assertNotNull(accountToTestFullIntegration);
@@ -312,6 +323,8 @@ class AccountTest {
         assertEquals(0, accountList.size());
     }
 
+    /*  End to End test     */
+
     @Test
     public void testFetchedAccountMethodThatNoExceptionIsThrown() throws InvalidAuthTypeException, InvalidUsernameInputException, InvalidAccountIdException, InvalidContactInfo, InvalidPaymentInfoException {
         assertNotNull(accountToTestFullIntegration);
@@ -321,18 +334,16 @@ class AccountTest {
         assertDoesNotThrow(() -> accountService.fetchedAccount(1L));
     }
 
-                    /*  End to End test     */
-
     @Test
     public void testEndToEndCreateAccountEndpoint() throws Exception {
         mockMvc.perform(post("/account/create_account")
-                .content(asJsonString(new Account(
-                        null,
-                        "divby0exc",
-                        "dani@gmail.com",
-                        "0761111111",
-                        "USER"))
-                )
+                        .content(asJsonString(new Account(
+                                null,
+                                "divby0exc",
+                                "dani@gmail.com",
+                                "0761111111",
+                                "USER"))
+                        )
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
@@ -373,7 +384,7 @@ class AccountTest {
                 "0761111111",
                 "USER"));
 
-        mockMvc.perform(delete("/account/delete_account/{id}", 1) )
+        mockMvc.perform(delete("/account/delete_account/{id}", 1))
                 .andExpect(status().isAccepted());
     }
 
@@ -392,17 +403,5 @@ class AccountTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1L));
-    }
-
-    /*
-    Borrowed from:
-    https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
-    */
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }

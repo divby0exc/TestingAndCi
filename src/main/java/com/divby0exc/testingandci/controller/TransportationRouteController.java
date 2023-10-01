@@ -31,6 +31,7 @@ public class TransportationRouteController {
                 .status(HttpStatus.OK)
                 .body(transportationRouteService.fetchAllRoutes());
     }
+
     //    PUT
     @PutMapping("update_departure/{routeId}")
     public ResponseEntity<TransportationRoute> updateDeparture(@PathVariable Long routeId, @RequestBody TransportationRoute transportationRoute) throws InvalidRouteIdException, InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
