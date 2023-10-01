@@ -10,6 +10,8 @@ import com.divby0exc.testingandci.service.ActiveBookingService;
 import com.divby0exc.testingandci.service.PaymentHistoryService;
 import com.divby0exc.testingandci.service.TransportationRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -27,7 +29,7 @@ public class TicketBookingController {
     AccountService accountService;
 
     @PostMapping("{accountId}/{routeId}")
-    public Optional<TransportationRoute> buyATicket(@PathVariable Long routeId, @PathVariable Long accountId) throws InvalidRouteIdException, InvalidAccountIdException {
+    public ResponseEntity<Optional<TransportationRoute>> buyATicket(@PathVariable Long routeId, @PathVariable Long accountId) throws InvalidRouteIdException, InvalidAccountIdException {
         ActiveBookings activeBookings = new ActiveBookings();
         PaymentsHistory paymentsHistory = new PaymentsHistory();
         if(accountService.fetchedAccount(accountId).isPresent()) {
@@ -40,7 +42,9 @@ public class TicketBookingController {
         }
         activeBookingService.createNewBooking(activeBookings);
         paymentHistoryService.createPayment(paymentsHistory);
-        return transportationRouteService.getOneRoute(routeId);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(transportationRouteService.getOneRoute(routeId));
     }
 
 
