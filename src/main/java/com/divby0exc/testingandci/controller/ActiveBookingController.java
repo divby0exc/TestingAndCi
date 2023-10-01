@@ -40,9 +40,9 @@ public class ActiveBookingController {
                         .body(activeBookingService.fetchActiveBookingList(accountId));
     }
     //    Delete
-    @DeleteMapping("delete_booking/{accountId}")
-    public ResponseEntity<HttpStatus> deleteBooking(@PathVariable Long accountId) throws InvalidBookingIdException {
-        activeBookingService.deleteBooking(accountId);
+    @DeleteMapping("delete_booking/{bookingId}")
+    public ResponseEntity<HttpStatus> deleteBooking(@PathVariable Long bookingId) throws InvalidBookingIdException {
+        activeBookingService.deleteBooking(bookingId);
 
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)

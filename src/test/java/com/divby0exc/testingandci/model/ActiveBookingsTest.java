@@ -25,8 +25,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasItems;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -130,8 +129,15 @@ class ActiveBookingsTest {
 
     }
     @Test
-    public void testDeleteBookingEndToEnd() {
+    public void testDeleteBookingEndToEnd() throws Exception {
+        assertEquals(3, activeBookingService.fetchActiveBookingList(2L).size());
 
+        mockMvc.perform(delete("/activebooking/delete_booking/{bookingId}", 2L)
+                       .accept(MediaType.APPLICATION_JSON))
+               .andDo(print())
+               .andExpect(status().isAccepted());
+
+        assertNull(activeBookingService.fetchActiveBookingList(2L));
     }
 
     /*
