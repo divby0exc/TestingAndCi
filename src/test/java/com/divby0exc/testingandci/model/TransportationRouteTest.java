@@ -14,13 +14,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(classes = {TestingAndCiApplication.class})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -342,12 +348,14 @@ class TransportationRouteTest {
 
     }
     @Test
-    public void testGetRoutesEndToEnd() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, TransportationRoutesIsEmptyException {
+    public void testGetRoutesEndToEnd() throws Exception {
         routeService.createNewRoute(transportationRoute);
 
-        List<TransportationRoute> fetchedRoutes = routeService.fetchAllRoutes();
-        assertDoesNotThrow(() ->  routeService.fetchAllRoutes());
-        assertEquals(1, fetchedRoutes.size());
+        mockMvc.perform(get("/transportation/get_routes")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[*].routeId", hasSize(1)));
     }
 
     /*
