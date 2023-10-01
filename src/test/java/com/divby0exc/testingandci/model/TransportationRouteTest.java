@@ -23,8 +23,7 @@ import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -352,8 +351,12 @@ class TransportationRouteTest {
         /*    End to End test     */
 
     @Test
-    public void testCreateRouteEndToEnd() {
+    public void testCreateRouteEndToEnd() throws Exception {
 
+        mockMvc.perform(post("/transportation/create_route")
+                        .content(asJsonString(transportationRoute))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated());
     }
     @Test
     public void testUpdateDepartureEndToEnd() throws Exception {

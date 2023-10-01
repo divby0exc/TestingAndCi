@@ -20,7 +20,7 @@ public class TransportationRouteController {
     @PostMapping("create_route")
     public ResponseEntity<TransportationRoute> createRoute(@RequestBody TransportationRoute transportationRoute) throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException {
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(transportationRouteService.createNewRoute(transportationRoute));
     }
 
