@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -107,19 +108,13 @@ class ActiveBookingsTest {
     }
     @Test
     public void testGetBookingEndToEnd() throws Exception {
-        activeBookingService.createNewBooking(
-                new ActiveBookings(
-                        null,
-                        1L,
-                        1L
-                )
-        );
-
-        mockMvc.perform(get("/activebooking/get_booking/{accountId}", 1L)
+        mockMvc.perform(get("/activebooking/get_booking/{accountId}"
+                        , 1L)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.accountId").value(1L));
+                .andExpect(jsonPath("$.bookingId")
+                        .value(1L));
 
     }
     @Test

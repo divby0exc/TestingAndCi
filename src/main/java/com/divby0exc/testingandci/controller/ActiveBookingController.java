@@ -26,11 +26,11 @@ public class ActiveBookingController {
                         .body(activeBookingService.createNewBooking(activeBookings));
     }
     //    GET
-    @GetMapping("get_booking/{accountId}")
-    public ResponseEntity<Optional<ActiveBookings>> fetchActiveBooking(@PathVariable Long accountId) throws InvalidBookingIdException {
+    @GetMapping("get_booking/{bookingId}")
+    public ResponseEntity<Optional<ActiveBookings>> fetchActiveBooking(@PathVariable Long bookingId) throws InvalidBookingIdException {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                        .body(activeBookingService.fetchOneBooking(accountId));
+                        .body(activeBookingService.fetchOneBooking(bookingId));
     }
     //    GET
     @GetMapping("get_booking_list/{accountId}")
