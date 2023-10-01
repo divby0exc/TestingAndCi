@@ -334,8 +334,20 @@ class TransportationRouteTest {
         /*    End to End test     */
 
     @Test
-    public void endToEndTest() {
+    public void testCreateRouteEndToEnd() {
 
+    }
+    @Test
+    public void testUpdateDepartureEndToEnd() {
+
+    }
+    @Test
+    public void testGetRoutesEndToEnd() throws InvalidEstimatedDepartureInputException, InvalidArrivalPointInputException, InvalidTransportationCompanyInputException, InvalidEstimatedArrivalInputException, InvalidDeparturePointInputException, InvalidTicketPriceInputException, TransportationRoutesIsEmptyException {
+        routeService.createNewRoute(transportationRoute);
+
+        List<TransportationRoute> fetchedRoutes = routeService.fetchAllRoutes();
+        assertDoesNotThrow(() ->  routeService.fetchAllRoutes());
+        assertEquals(1, fetchedRoutes.size());
     }
 
     /*
