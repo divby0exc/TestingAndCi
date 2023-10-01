@@ -45,16 +45,24 @@ class TransportationRouteTest {
     private MockMvc mockMvc;
 
     private TransportationRoute transportationRoute = new TransportationRoute();
+    private TransportationRoute transportationRoute2 = new TransportationRoute();
 
     @BeforeEach
     void init() {
-        transportationRoute.setRouteId(1L);
         transportationRoute.setTransportationCompany("SJ");
         transportationRoute.setArrivalPoint("Stockholm");
         transportationRoute.setDeparturePoint("Orebro");
         transportationRoute.setEstimatedDeparture("07:13");
         transportationRoute.setEstimatedArrival("09:15");
         transportationRoute.setTicketPrice(100);
+
+
+        transportationRoute2.setTransportationCompany("SL");
+        transportationRoute2.setArrivalPoint("Gothenburg");
+        transportationRoute2.setDeparturePoint("Orebro");
+        transportationRoute2.setEstimatedDeparture("07:13");
+        transportationRoute2.setEstimatedArrival("10:15");
+        transportationRoute2.setTicketPrice(150);
     }
 
     @Test
@@ -350,12 +358,13 @@ class TransportationRouteTest {
     @Test
     public void testGetRoutesEndToEnd() throws Exception {
         routeService.createNewRoute(transportationRoute);
+        routeService.createNewRoute(transportationRoute2);
 
         mockMvc.perform(get("/transportation/get_routes")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[*].routeId", hasSize(1)));
+                .andExpect(jsonPath("$[*].routeId", hasSize(2)));
     }
 
     /*
