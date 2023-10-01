@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -118,7 +119,14 @@ class ActiveBookingsTest {
 
     }
     @Test
-    public void testGetBookingListEndToEnd() {
+    public void testGetBookingListEndToEnd() throws Exception {
+        mockMvc.perform(get("/activebooking/get_booking_list/{accountId}", 2L)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[*].accountId", hasItems(2)))
+                .andExpect(jsonPath("$[*].bookingId", hasItems(1,2,3)))
+                .andExpect(jsonPath("$[*].routeId", hasItems(1,2,3)));
 
     }
     @Test
