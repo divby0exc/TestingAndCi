@@ -43,10 +43,10 @@ regarding connection types and configuration.
 
 ### Prerequisites
 
-XAMPP,
-Jenkins,
-Docker,
-JDK 17
+    XAMPP v3.3.0,
+    Jenkins v2.414.2
+    Docker v4.23.0
+    jdk-17.0.2
 
 ### Installation
 
@@ -109,10 +109,10 @@ You may then open up your IDE and search for the project in the given folder
 ## Usage
 
 You may visit this url after the installation and configuration is done:
+Here you will find the necessary endpoints in the project.
 
     http://localhost:8080/
 
-Here you will find the necessary endpoints in the project.
 As described in [About](#about) section this project is far from complete.
 
 It was merely a fair try to make a mobility service according
