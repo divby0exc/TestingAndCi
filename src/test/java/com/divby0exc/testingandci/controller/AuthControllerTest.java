@@ -23,7 +23,7 @@ class AuthControllerTest {
     @Test
     void signIn() throws Exception {
         mockMvc.perform(post("/auth/login")
-                .content("{\"id\":\"1\",\"username\":\"divby0exc\"}")
+                .content("{\"username\":\"divby0exc\",\"id\":\"1\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
