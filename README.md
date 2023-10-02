@@ -40,6 +40,10 @@ Once again, it uses a simple JpaRepository.
 You may check the application.properties file for more information
 regarding connection types and configuration.
 
+Also, you should be aware of that if your build fails either in Jenkins 
+or your IDE due to connection issues, my guess would be that 
+you haven't started Apache and/or MySQL services in xampp
+
 
 ### Prerequisites
 
@@ -80,7 +84,8 @@ You may then open up your IDE and search for the project in the given folder
     You repeat these below mentioned steps 2 times.
     One is for dev environment and one is for prod environment
     
-    Branches to build is testing on the first and main for the latter
+    Branches to build is testing on dev and main for prod
+    
     
     
 
