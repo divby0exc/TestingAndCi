@@ -134,8 +134,8 @@ This project is licensed under the [MIT License] - see the [LICENSE.md](LICENSE)
     Borrowed asJsonString from [https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/]
 
 ## Contact
-    [Visit my GitHub][GitHub]
-    [Contact mail][Mail]
+[Visit my GitHub][GitHub]
+[Contact mail][Mail]
 
 
 [Mail]: mailto:seddigh.daniel@gmail.com
