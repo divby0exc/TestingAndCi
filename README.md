@@ -135,5 +135,5 @@ This project is licensed under the [MIT License] - see the [LICENSE.md](LICENSE)
 
 ## Contact
 
-    Email: <a href="mailto:seddigh.daniel@gmail.com">Send me a mail</a>
-    GitHub: <a href="https://github.com/divby0exc">GitHub Profile</a>
+    Email: [Send me a mail](mailto:seddigh.daniel@gmail.com)
+    GitHub: [GitHub Profile](https://github.com/divby0exc)
